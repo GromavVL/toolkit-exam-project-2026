@@ -8,17 +8,20 @@
 started_at=$(date +"%s")
 
 echo "-----> Provisioning containers"
-docker compose --file docker-compose-dev.yaml up
+docker compose --file docker-compose-dev.yaml up -d
 echo ""
+
+echo "-----> Database pending ..."
+sleep 5
 
 # Run Sequalize's migrations.
 echo "-----> Running application migrations"
-docker exec -it exam-project-server-dev-1 sequelize db:migrate
+docker exec -it toolkit-exam-project-2026-server-dev-1 npx sequelize-cli db:migrate
 echo ""
 
 # Run Sequalize's seeds.
 echo "-----> Running application seeds"
-docker exec -it exam-project-server-dev-1 sequelize db:seed:all
+docker exec -it toolkit-exam-project-2026-server-dev-1 npx sequelize-cli db:seed:all
 echo "<----- Seeds created"
 
 ended_at=$(date +"%s")
