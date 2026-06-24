@@ -172,12 +172,18 @@ module.exports.payment = async (req, res, next) => {
 };
 
 module.exports.updateUser = async (req, res, next) => {
+  const { firstName, lastName, displayName } = req.body;
   try {
+    const update = {
+      firstName,
+      lastName,
+      displayName,
+    };
     if (req.file) {
-      req.body.avatar = req.file.filename;
+      update.avatar = req.file.filename;
     }
     const updatedUser = await userQueries.updateUser(
-      req.body,
+      update,
       req.tokenData.userId
     );
     res.send({
