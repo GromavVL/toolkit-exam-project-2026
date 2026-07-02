@@ -9,7 +9,13 @@ import Schems from '../../utils/validators/validationSchems';
 import Error from '../Error/Error';
 
 const UpdateUserInfoForm = props => {
-  const { onSubmit, submitting, error, clearUserError } = props;
+  const {
+    onSubmit,
+    submitting,
+    error,
+    clearUserError,
+    initialValues: { avatar },
+  } = props;
   return (
     <Formik
       onSubmit={onSubmit}
@@ -68,6 +74,7 @@ const UpdateUserInfoForm = props => {
         </div>
         <ImageUpload
           name='file'
+          currentAvatar={avatar}
           classes={{
             uploadContainer: styles.imageUploadContainer,
             inputContainer: styles.uploadInputContainer,
@@ -90,6 +97,7 @@ const mapStateToProps = state => {
       firstName: data.firstName,
       lastName: data.lastName,
       displayName: data.displayName,
+      avatar: data.avatar,
     },
   };
 };

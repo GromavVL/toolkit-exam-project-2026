@@ -1,10 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useField } from 'formik';
+import CONSTANTS from '../../../constants';
 
 const ImageUpload = props => {
   const [field, meta, helpers] = useField(props.name);
   const { uploadContainer, inputContainer, imgStyle } = props.classes;
+  const { currentAvatar } = props;
   const onChange = e => {
     const node = window.document.getElementById('imagePreview');
     const file = e.target.files[0];
@@ -34,7 +36,14 @@ const ImageUpload = props => {
       </div>
       <img
         id='imagePreview'
-        className={classNames({ [imgStyle]: !!field.value })}
+        src={
+          currentAvatar === 'anon.png'
+            ? CONSTANTS.ANONYM_IMAGE_PATH
+            : `${CONSTANTS.publicURL}/${currentAvatar}`
+        }
+         className={classNames({
+          [imgStyle]: !!field.value || !!currentAvatar
+        })}
         alt='user'
       />
     </div>
