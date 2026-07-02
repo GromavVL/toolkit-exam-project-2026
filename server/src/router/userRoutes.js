@@ -8,6 +8,7 @@ const upload = require('../utils/fileUpload');
 
 const router = express.Router();
 
+router.post('/getUser', checkToken.checkAuth);
 router.post('/login', validators.validateLogin, userController.login);
 
 router.post(
