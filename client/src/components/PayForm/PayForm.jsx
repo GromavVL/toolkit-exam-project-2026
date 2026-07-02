@@ -28,6 +28,7 @@ const PayForm = props => {
           number: '',
           cvc: '',
           expiry: '',
+          sum: ''
         }}
         onSubmit={pay}
         validationSchema={Schems.PaymentSchema}

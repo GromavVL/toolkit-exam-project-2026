@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './ContestCreationPage.module.sass';
@@ -11,6 +11,11 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 const ContestCreationPage = props => {
   const formRef = useRef();
   const navigate = useNavigate();
+  useEffect(() => {
+  if (!props.bundleStore.bundle) {
+    navigate('/startContest', { replace: true });
+  }
+}, [props.bundleStore.bundle, navigate]);
 
   const contestData = props.contestCreationStore.contests[props.contestType]
     ? props.contestCreationStore.contests[props.contestType]
@@ -30,8 +35,6 @@ const ContestCreationPage = props => {
       formRef.current.handleSubmit();
     }
   };
-
-  !props.bundleStore.bundle && navigate('/startContest', { replace: true });
 
   return (
     <div>
