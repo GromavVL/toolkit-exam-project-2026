@@ -172,12 +172,11 @@ module.exports.payment = async (req, res, next) => {
 };
 
 module.exports.updateUser = async (req, res, next) => {
-  const { firstName, lastName, displayName } = req.body;
   try {
     const update = {
-      firstName,
-      lastName,
-      displayName,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      displayName: req.body.displayName,
     };
     if (req.file) {
       update.avatar = req.file.filename;
