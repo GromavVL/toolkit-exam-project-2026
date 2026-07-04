@@ -7,15 +7,17 @@ const FieldFileInput = ({ classes, ...rest }) => {
   return (
     <Field name={rest.name}>
       {props => {
-        const { field } = props;
-
+        const { field, form, meta } = props;
         const getFileName = () => {
           if (props.field.value) {
             return props.field.value.name;
           }
           return '';
         };
-
+        const handleChange = e => {
+          const file = e.currentTarget.files[0];
+          form.setFieldValue(field.name, file);
+        }
         return (
           <div className={fileUploadContainer}>
             <label htmlFor='fileInput' className={labelClass}>
@@ -25,7 +27,7 @@ const FieldFileInput = ({ classes, ...rest }) => {
               {getFileName()}
             </span>
             <input
-              {...field}
+              onChange={handleChange}
               className={fileInput}
               id='fileInput'
               type='file'
