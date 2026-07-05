@@ -4,7 +4,6 @@
   align-items: center
   border-top: 1px solid #f3f3f3
   padding: 0 15px
-  margin-top: 8px
   padding-top: 7px
 
   &:last-child
@@ -30,8 +29,8 @@
       position: absolute
       margin-left: 20px
       cursor: pointer
-      top: -15px
-      left: -8px
+      top: -12px
+      left: -14px
       transition: transform 0.2s ease
       transform: rotate(150deg)
 
@@ -41,9 +40,9 @@
 
     .container
       display: flex
-      padding: 0 15px
       justify-content: flex-start
       align-items: center
+      position: relative
 
       .fieldWarning
         font-size: 15px
@@ -51,12 +50,11 @@
         flex-direction: row
         justify-content: center
         align-items: center
-        color: white
-        border: 1px solid #b72522
-        margin-bottom: 15px
-        padding-bottom: 5px
-        padding-top: 5px
+        color: red
         text-align: center
+        position: absolute
+        top: 35px
+        left: 5px
 
       .notValid
         border: 1px solid red !important

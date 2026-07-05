@@ -33,6 +33,7 @@ const ChatInput = props => {
               container: styles.container,
               input: styles.input,
               notValid: styles.notValid,
+              warning: styles.fieldWarning,
             }}
           />
           <button type='submit'>
