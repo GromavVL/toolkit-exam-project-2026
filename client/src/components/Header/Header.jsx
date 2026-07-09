@@ -210,6 +210,9 @@ class Header extends React.Component {
                     <li className={styles.last}>
                       <a href='http://www.google.com'>TESTIMONIALS</a>
                     </li>
+                    <li>
+                      <Link to='/howItWork'>HOW IT WORKS</Link>
+                    </li>
                   </ul>
                 </li>
                 <li>
