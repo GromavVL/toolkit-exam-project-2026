@@ -87,21 +87,42 @@ export default {
       title: 'Launch a Contest',
       body: 'Work with hundreds of creative experts to get custom name suggestions for your business or brand. All names are auto-checked for URL availability.',
       link: 'https://www.atom.com/start-contest',
-      linkContent: 'Launch a Contest'
+      linkContent: 'Launch a Contest',
     },
     {
       img: 'card2.svg',
       title: 'Explore Names For Sale',
       body: 'Our branding team has curated thousands of pre-made names that you can purchase instantly. All names include a matching URL and a complimentary Logo Design',
       link: 'https://www.atom.com/premium-domains-for-sale',
-      linkContent: 'Explore Names For Sale'
+      linkContent: 'Explore Names For Sale',
     },
     {
       img: 'card3.svg',
       title: 'Agency-level Managed Contests',
       body: 'Our Managed contests combine the power of crowdsourcing with the rich experience of our branding consultants. Get a complete agency-level experience at a fraction of Agency costs',
       link: 'https://www.atom.com/managed-contests',
-      linkContent: 'Learn More'
+      linkContent: 'Learn More',
+    },
+  ],
+  StepCards: [
+    {
+      titleStep: 'Step 1',
+      bodyStep:
+        'Fill out your Naming Brief and begin receiving name ideas in minutes',
+    },
+    {
+      titleStep: 'Step 2',
+      bodyStep:
+        'Rate the submissions and provide feedback to creatives. Creatives submit even more names based on your feedback.',
+    },
+    {
+      titleStep: 'Step 3',
+      bodyStep:
+        'Our team helps you test your favorite names with your target audience. We also assist with Trademark screening.',
+    },
+    {
+      titleStep: 'Step 4',
+      bodyStep: 'Pick a Winner. The winner gets paid for their submission.',
     },
   ],
 };
