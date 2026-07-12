@@ -1,3 +1,8 @@
+$color-h: #19184A
+$weight-h: 700
+$bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, rgba(20, 187, 191, .05) 100%), #FFFFFF
+
+
 .pageContent
     font-family: "Product Sans", sans-serif
 
@@ -25,9 +30,9 @@
 
 .heading
     padding: 10px
-    color: #19184A
+    color: $color-h
     font-size: 40px
-    font-weight: 700
+    font-weight: $weight-h
     margin-top: 10px
     @media (max-width: 1030px)
         font-size: 24px
@@ -64,3 +69,73 @@
         min-width: 260px
         height: auto
         aspect-ratio: 495 / 280
+
+.cardWrapper
+    padding: 80px 0
+    background: $bg-color-card-section
+
+.cardHeadingContent
+    text-align: center
+
+.cardHeading
+    font-size: 32px
+    color: $color-h
+    padding: 12px
+    font-weight: $weight-h
+    margin-top: 10px
+
+
+.cardDescription
+    color: $color-h
+    padding: 10px
+
+.cardContainer
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    gap: 23px
+    align-items: stretch
+    margin-top: 35px
+
+.blockCard
+    display: flex
+    flex-direction: column
+    border-radius: 20px
+    padding: 25px
+    width: 380px
+    max-width: 100%
+    flex: 1 1 1
+    background: #fff
+    box-sizing: border-box
+    box-shadow: 0 16px 32px rgb(0 0 0 / .04)
+
+.cardImages
+    width: 48px
+
+.cardTitle
+    font-size: 20px
+    font-weight: $weight-h
+    padding: 10px 0
+
+.cardBody
+    color: #828282
+    line-height: 1.5
+    margin-bottom: 75px
+
+.cardLink
+    display: flex
+    align-items: center
+    width: fit-content
+    text-decoration: none
+    background: linear-gradient(-45deg, #5a73ed 0, #3d57d5 100%)
+    color: #ffff
+    padding: 12px
+    border-radius: 8px
+    margin-top: auto
+    gap: 6px
+    font-weight: $weight-h
+
+
+.icons
+    width: 3rem
+    height: 2rem
