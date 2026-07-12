@@ -125,4 +125,34 @@ export default {
       bodyStep: 'Pick a Winner. The winner gets paid for their submission.',
     },
   ],
+  searchTags: [
+    {
+      label: 'Tech',
+      href: 'https://www.atom.com/premium-domains-for-sale/q/technology',
+    },
+    {
+      label: 'Clothing',
+      href: 'https://www.atom.com/premium-domains-for-sale/q/fashion-clothing',
+    },
+    {
+      label: 'Finance',
+      href: 'https://www.atom.com/premium-domains-for-sale/q/finance',
+    },
+    {
+      label: 'Real Estate',
+      href: 'https://www.atom.com/premium-domains-for-sale/q/real-estate',
+    },
+    {
+      label: 'Crypto',
+      href: 'https://www.atom.com/premium-domains-for-sale/q/cryptocurrency-blockchain',
+    },
+    {
+      label: 'Short',
+      href: 'https://www.atom.com/premium-domains-for-sale/length/short',
+    },
+    {
+      label: 'One Word',
+      href: 'https://www.atom.com/premium-domains-for-sale/type_of_name/one-word',
+    },
+  ],
 };
