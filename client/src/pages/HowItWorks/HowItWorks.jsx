@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './HowItWorks.module.sass';
 import CONSTANTS from '../../constants';
-import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
 
 function HowItWorks () {
   return (
@@ -44,8 +44,29 @@ function HowItWorks () {
               <p className={styles.cardBody}>{c.body}</p>
               <a href={c.link} className={styles.cardLink}>
                 {c.linkContent}
-                <LiaLongArrowAltRightSolid className={styles.icons}/>
+                <LiaLongArrowAltRightSolid className={styles.icons} />
               </a>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className={styles.cardStepWrapper}>
+        <div className={styles.cardStepHeader}>
+          <img
+            src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWork/achievements.svg`}
+            alt='achievements'
+            className={styles.cardStepIcon}
+          />
+          <h2 className={styles.cardStepTitle}>How Do Naming Contests Work?</h2>
+        </div>
+        <div className={styles.cardStepList}>
+          {CONSTANTS.StepCards.map((step, s) => (
+            <article key={step.titleStep} className={styles.cardStepItem}>
+              <span className={styles.cardStepItemTitle}>{step.titleStep}</span>
+              <p className={styles.cardStepItemBody}>{step.bodyStep}</p>
+              {s < CONSTANTS.StepCards.length - 1 && (
+                <LiaLongArrowAltRightSolid className={styles.cardStepArrow} />
+              )}
             </article>
           ))}
         </div>
