@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './HowItWorks.module.sass';
 import CONSTANTS from '../../constants';
 import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
+import { IoSearchOutline } from 'react-icons/io5';
 
 function HowItWorks () {
   return (
@@ -68,6 +69,26 @@ function HowItWorks () {
                 <LiaLongArrowAltRightSolid className={styles.cardStepArrow} />
               )}
             </article>
+          ))}
+        </div>
+      </section>
+      <section className={styles.searchBlock}>
+        <div className={styles.searchInputWrapper}>
+          <IoSearchOutline className={styles.searchBlockIcon} />
+          <input
+            type='text'
+            placeholder='Search Over 300,000+ Premium Names'
+            className={styles.searchInput}
+          />
+          <button className={styles.searchButton}>
+            <IoSearchOutline className={styles.searchButtonIcon} />
+          </button>
+        </div>
+        <div className={styles.searchTagsList}>
+          {CONSTANTS.searchTags.map(tag => (
+            <a key={tag.label} href={tag.href} className={styles.searchTagItem}>
+              {tag.label}
+            </a>
           ))}
         </div>
       </section>
