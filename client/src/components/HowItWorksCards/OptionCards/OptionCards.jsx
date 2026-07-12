@@ -5,7 +5,7 @@ import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
 function OptionCards () {
   return (
     <>
-      {CONSTANTS.Cards.map(c => (
+      {CONSTANTS.CARDS.map(c => (
         <article key={c.title} className={styles.blockCard}>
           <img
             src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWork/${c.img}`}

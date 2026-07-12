@@ -6,7 +6,7 @@ import StepCards from '../../components/HowItWorksCards/StepCards/StepCards';
 
 function HowItWorks () {
   const basePath = `${CONSTANTS.STATIC_IMAGES_PATH}howItWork/`;
-  const searchTagsList = CONSTANTS.searchTags.map(tag => (
+  const searchTagsList = CONSTANTS.SEARCH_TAGS.map(tag => (
     <a key={tag.label} href={tag.href} className={styles.searchTagItem}>
       {tag.label}
     </a>

@@ -45,7 +45,7 @@ export default {
     'a Product',
     'a Startup',
   ],
-  FooterItems: [
+  FOOTER_ITEMS: [
     {
       title: 'SQUADHELP',
       items: ['About', 'Contact', 'How It Works?', 'Testimonials', 'Our Work'],
@@ -81,7 +81,7 @@ export default {
       items: ['Terms of Service', 'Privacy Policy', 'Cookie Policy'],
     },
   ],
-  Cards: [
+  CARDS: [
     {
       img: 'card1.svg',
       title: 'Launch a Contest',
@@ -104,7 +104,7 @@ export default {
       linkContent: 'Learn More',
     },
   ],
-  StepCards: [
+  STEP_CARDS: [
     {
       titleStep: 'Step 1',
       bodyStep:
@@ -125,7 +125,7 @@ export default {
       bodyStep: 'Pick a Winner. The winner gets paid for their submission.',
     },
   ],
-  searchTags: [
+  SEARCH_TAGS: [
     {
       label: 'Tech',
       href: 'https://www.atom.com/premium-domains-for-sale/q/technology',

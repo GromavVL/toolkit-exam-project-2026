@@ -15,7 +15,7 @@ class Footer extends Component {
   );
 
   topFooterRender () {
-    return CONSTANTS.FooterItems.map(item => this.topFooterItemsRender(item));
+    return CONSTANTS.FOOTER_ITEMS.map(item => this.topFooterItemsRender(item));
   }
 
   render () {

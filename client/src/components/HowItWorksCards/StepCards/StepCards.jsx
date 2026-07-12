@@ -5,11 +5,11 @@ import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
 function StepCards () {
   return (
     <>
-      {CONSTANTS.StepCards.map((step, s) => (
+      {CONSTANTS.STEP_CARDS.map((step, s) => (
         <article key={step.titleStep} className={styles.cardStepItem}>
           <span className={styles.cardStepItemTitle}>{step.titleStep}</span>
           <p className={styles.cardStepItemBody}>{step.bodyStep}</p>
-          {s < CONSTANTS.StepCards.length - 1 && (
+          {s < CONSTANTS.STEP_CARDS.length - 1 && (
             <LiaLongArrowAltRightSolid className={styles.cardStepArrow} />
           )}
         </article>
