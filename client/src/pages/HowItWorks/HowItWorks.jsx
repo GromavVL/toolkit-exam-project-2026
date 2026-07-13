@@ -1,8 +1,9 @@
 import styles from './HowItWorks.module.sass';
 import CONSTANTS from '../../constants';
 import { IoSearchOutline } from 'react-icons/io5';
-import OptionCards from '../../components/HowItWorksCards/OptionCards/OptionCards';
-import StepCards from '../../components/HowItWorksCards/StepCards/StepCards';
+import OptionCards from '../../components/HowItWorksContainers/OptionCards/OptionCards';
+import StepCards from '../../components/HowItWorksContainers/StepCards/StepCards';
+import Questions from '../../components/HowItWorksContainers/Questions/Questions';
 
 function HowItWorks () {
   const basePath = `${CONSTANTS.STATIC_IMAGES_PATH}howItWork/`;
@@ -58,7 +59,7 @@ function HowItWorks () {
           <StepCards />
         </div>
       </section>
-      
+
       <section className={styles.searchBlock}>
         <div className={styles.searchInputWrapper}>
           <IoSearchOutline className={styles.searchBlockIcon} />
@@ -72,6 +73,11 @@ function HowItWorks () {
           </button>
         </div>
         <div className={styles.searchTagsList}>{searchTagsList}</div>
+      </section>
+
+      <section className={styles.questionsBlock}>
+        <h2 className={styles.questionsTitle}>Frequently Asked Questions</h2>
+        <Questions/>
       </section>
     </main>
   );
