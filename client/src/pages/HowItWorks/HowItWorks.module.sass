@@ -1,6 +1,9 @@
 $color-h: #19184A
-$weight-h: 700
 $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, rgba(20, 187, 191, .05) 100%), #FFFFFF
+%heading-h2
+    font-size: 28px
+    font-weight: 700
+    color: #19184A
 
 .pageContent
     font-family: "Product Sans", sans-serif
@@ -31,7 +34,7 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     padding: 10px
     color: $color-h
     font-size: 40px
-    font-weight: $weight-h
+    font-weight: 700
     margin-top: 10px
     @media (max-width: 1030px)
         font-size: 24px
@@ -77,12 +80,9 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     text-align: center
 
 .cardHeading
-    font-size: 32px
-    color: $color-h
     padding: 12px
-    font-weight: $weight-h
     margin-top: 10px
-
+    @extend %heading-h2
 
 .cardDescription
     color: $color-h
@@ -116,9 +116,7 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     width: 70px
 
 .cardStepTitle
-    font-weight: $weight-h
-    color: $color-h
-    font-size: 28px
+    @extend %heading-h2
     padding: 35px
     margin-bottom: 45px
 
@@ -193,3 +191,8 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     @media (max-width: 640px)
         padding: 8px 14px
         font-size: 14px
+
+.questionsTitle
+    @extend %heading-h2
+    text-align: center
+    padding: 15px 0
