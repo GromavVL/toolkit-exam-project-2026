@@ -1,0 +1,109 @@
+.questionContainer
+    display: flex
+    flex-direction: column
+    margin: 25px 0
+    max-width: 830px
+    width: 100%
+    box-sizing: border-box
+
+    @media (max-width: 900px)
+        max-width: 100%
+        padding: 0 16px
+    
+.titleQuestion
+    font-size: 28px
+    font-weight: 700
+    color: #377dff
+    padding: 23px
+
+    @media (max-width: 480px)
+        font-size: 22px
+        padding: 16px
+
+.questionList
+    display: flex
+    flex-direction: column
+    gap: 16px
+    max-width: 780px
+    box-sizing: border-box
+
+    @media (max-width: 900px)
+        max-width: 100%
+        padding: 0 16px
+
+.questionItem
+    cursor: pointer
+    border-radius: 16px
+    border: 1px solid #f3f5fe
+    width: 100%
+    padding: 28px 24px
+    transition: background-color .2s ease, border-color .2s ease
+    box-sizing: border-box
+
+    &:hover
+        background-color: rgba(48, 125, 246, .1)
+        border-color: rgb(10, 104, 255)
+
+    &[open]
+        background-color: #307DF6
+        border-color: #307DF6
+
+    @media (max-width: 480px)
+        padding: 18px 16px
+
+
+.questionSummary
+  font-size: 19px
+  color: #19184A
+  font-weight: 700
+  list-style: none
+  outline: none
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  .questionItem[open] &
+        color: #fff
+
+.questionAnswer
+  width: 100%
+  margin-top: 24px
+  color: #4a4a68
+  line-height: 1.5
+
+  .questionItem[open] &
+        color: #fff
+
+.icons
+  color: #377dff
+  font-weight: 400
+  display: inline-block
+  transition: transform .2s ease, color .2s ease
+
+  .questionItem[open] &
+    color: #fff
+    transform: rotate(45deg)
+
+.nav
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  justify-content: center
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #FFFFFF
+  border-radius: 11px
+  gap: 4px
+  width: fit-content
+  margin: 25px
+
+.navItem
+  text-decoration: none
+  padding: 14px 28px
+  border-radius: 11px
+  color: #1a1a2e
+
+  &:hover
+    background: linear-gradient(45deg, #ff6955 0, #e97543 100%)
+    color: #ffff
+
+    @media (max-width: 480px)
+        padding: 10px 16px

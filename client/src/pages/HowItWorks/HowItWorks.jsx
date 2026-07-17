@@ -60,6 +60,11 @@ function HowItWorks () {
         </div>
       </section>
 
+      <section className={styles.questionsBlock}>
+        <h2 className={styles.questionsTitle}>Frequently Asked Questions</h2>
+        <Questions />
+      </section>
+
       <section className={styles.searchBlock}>
         <div className={styles.searchInputWrapper}>
           <IoSearchOutline className={styles.searchBlockIcon} />
@@ -73,11 +78,6 @@ function HowItWorks () {
           </button>
         </div>
         <div className={styles.searchTagsList}>{searchTagsList}</div>
-      </section>
-
-      <section className={styles.questionsBlock}>
-        <h2 className={styles.questionsTitle}>Frequently Asked Questions</h2>
-        <Questions/>
       </section>
     </main>
   );
