@@ -274,4 +274,19 @@ export default {
       ],
     },
   ],
+  BUTTON_ITEMS: [
+    {
+      title: 'Yes',
+      body: 'But minor variations are allowed',
+      recommended: true,
+    },
+    {
+      title: 'Yes',
+      body: 'The Domain should exactly match the name',
+    },
+    {
+      title: 'No',
+      body: 'I am only looking for a name, not a Domain',
+    },
+  ],
 };
