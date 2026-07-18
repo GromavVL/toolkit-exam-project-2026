@@ -53,6 +53,13 @@ class Header extends React.Component {
                   <span>My Account</span>
                 </Link>
               </li>
+              {this.props.data && this.props.data.role !== CONSTANTS.CREATOR && (
+                <li>
+                  <Link to='/events' style={{ textDecoration: 'none' }}>
+                    <span>Events</span>
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   to='http:/www.google.com'
