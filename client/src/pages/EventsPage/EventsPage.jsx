@@ -5,11 +5,16 @@ import EventsList from '../../components/EventsList/EventsList';
 
 function EventsPage () {
   return (
-    <div>
-      EventsPage
-      <EventsForm />
-      <EventsList />
-    </div>
+    <main className={styles.eventsWrapper}>
+      <section className={styles.eventContainer}>
+        <div className={styles.formContent}>
+          <EventsForm />
+        </div>
+        <div className={styles.listContent}>
+          <EventsList />
+        </div>
+      </section>
+    </main>
   );
 }
 
