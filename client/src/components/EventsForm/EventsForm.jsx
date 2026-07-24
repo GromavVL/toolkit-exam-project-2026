@@ -1,16 +1,28 @@
-import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import React, { useState } from 'react';
+import { Formik, Form } from 'formik';
 import styles from './EventsForm.module.sass';
 import Schems from '../../utils/validators/validationSchems';
 import FormInput from '../FormInput/FormInput';
 
 function EventsForm () {
+  if (!window.localStorage.getItem('accessEvent')) {
+    window.localStorage.setItem('accessEvent', JSON.stringify([]));
+  }
+  const [events, setEvents] = useState(
+    JSON.parse(window.localStorage.getItem('accessEvent'))
+  );
   const initialValues = {
     eventName: '',
     eventTime: '',
     remiderTime: '',
   };
+  const saveEvent = newEvent => {
+    window.localStorage.setItem('accessEvent', JSON.stringify(newEvent));
+    setEvents(newEvent);
+  };
   const handlerSubmit = (values, { resetForm }) => {
+    const newEvent = [...events, values];
+    saveEvent(newEvent);
     resetForm();
   };
   const formInputClasses = {
