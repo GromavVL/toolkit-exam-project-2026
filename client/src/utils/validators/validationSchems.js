@@ -226,6 +226,7 @@ export default {
     remiderTime: yup
       .date()
       .required('Required')
+      .min(new Date())
       .max(yup.ref('eventTime'), 'Reminder must be before event time'),
   }),
 };
