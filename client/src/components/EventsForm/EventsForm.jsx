@@ -4,13 +4,7 @@ import styles from './EventsForm.module.sass';
 import Schems from '../../utils/validators/validationSchems';
 import FormInput from '../FormInput/FormInput';
 
-function EventsForm () {
-  if (!window.localStorage.getItem('accessEvent')) {
-    window.localStorage.setItem('accessEvent', JSON.stringify([]));
-  }
-  const [events, setEvents] = useState(
-    JSON.parse(window.localStorage.getItem('accessEvent'))
-  );
+function EventsForm ({ events, setEvents }) {
   const initialValues = {
     eventName: '',
     eventTime: '',
