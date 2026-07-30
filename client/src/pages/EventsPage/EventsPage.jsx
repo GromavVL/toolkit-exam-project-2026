@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './EventsPage.module.sass';
 import EventsForm from '../../components/EventsForm/EventsForm';
 import EventsList from '../../components/EventsList/EventsList';
+import CONSTANTS from '../../constants';
 
 function EventsPage () {
-  if (!window.localStorage.getItem('accessEvent')) {
-    window.localStorage.setItem('accessEvent', JSON.stringify([])) || [];
-  }
-  const [events, setEvents] = useState(
-    JSON.parse(window.localStorage.getItem('accessEvent'))
-  );
+  const [events, setEvents] = useState(() => {
+    const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(CONSTANTS.STORAGE_KEY, JSON.stringify(events));
+  }, [events]);
+
   return (
     <main className={styles.eventsWrapper}>
       <section className={styles.eventContainer}>
@@ -17,7 +21,7 @@ function EventsPage () {
           <EventsForm events={events} setEvents={setEvents} />
         </div>
         <div className={styles.listContent}>
-          <EventsList events={events} />
+          <EventsList events={events} setEvents={setEvents} />
         </div>
       </section>
     </main>
