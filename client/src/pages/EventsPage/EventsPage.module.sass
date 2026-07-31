@@ -3,18 +3,46 @@
     align-items: center
     justify-content: center
     min-height: 86vh
+    box-sizing: border-box
 
 .eventContainer
     display: flex
     flex-wrap: wrap
     justify-content: center
-    gap: 35px
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12)
-    padding: 33px
+    padding: 24px
     border-radius: 10px
+    width: 100%
+    max-width: 1025px
+    box-sizing: border-box
+
+    @media (max-width: 1103px)
+        flex-direction: column
+        gap: 24px
+        align-items: center
+    @media (max-width: 715px)
+        padding: 20px 14px
+        gap: 20px
+    @media (max-width: 360px)
+        padding: 16px 10px
 
 .formContent
     border-right: 2px solid #28d2d0
+    box-sizing: border-box
+    flex: 0 1 310px
 
     @media (max-width: 1103px)
         border: none
+        border-bottom: 2px solid #28d2d0
+        padding-bottom: 24px
+        flex-basis: auto
+
+.listContent
+    display: flex
+    flex-direction: column
+    align-items: center
+    flex: 1 1 560px
+    min-width: 0
+
+    @media (max-width: 1103px)
+        flex-basis: auto

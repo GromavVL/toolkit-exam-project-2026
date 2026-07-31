@@ -1,0 +1,59 @@
+.titleContent
+    color: rgb(69, 90, 137)
+    font-size: 22px
+    font-weight: 700
+
+.titleIcon
+    font-size: 22px
+    color: rgb(69, 90, 137)
+
+    @media (max-width: 715px)
+        font-size: 16px
+
+.timeBlock
+    display: flex
+    gap: 10px
+    align-items: center 
+
+.timeBlockContent
+    color: gray
+    
+.headingEventList
+    display: flex
+    justify-content: space-between
+    width: 100%
+    max-width: 630px
+    align-items: center
+    gap: 16px
+    margin-bottom: 15px
+
+    @media (max-width: 360px)
+        flex-direction: column
+        width: 96%
+
+.timeRenderList
+    display: flex
+    flex-direction: column
+    gap: 10px
+    padding-right: 10px
+    width: 100%
+    max-width: 614px
+    max-height: 290px
+    overflow-y: auto
+    scrollbar-width: thin
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent
+
+    @media (max-width: 715px)
+        scrollbar-width: none
+        padding-right: 0
+        width: 100%
+
+.massageNoEvents
+    text-align: center
+    color: rgb(69, 90, 137)
+    font-size: 19px
+    padding: 90px 12px
+
+    @media (max-width: 715px)
+        font-size: 16px
+        padding: 64px 12px

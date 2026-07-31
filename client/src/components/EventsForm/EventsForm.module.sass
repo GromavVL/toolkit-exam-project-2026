@@ -1,8 +1,12 @@
 .form
     padding: 25px
     box-sizing: border-box
-    min-width: 355px
+    width: 100%
+    max-width: 355px
     border-radius: 8px
+
+    @media (max-width: 360px)
+        padding: 16px 0
 
 .title
     margin-bottom: 15px
@@ -40,9 +44,8 @@
     border-bottom: 1px solid red
 
 .submitButton
-    color: #ffff
+    color: #fff
     background: #28d2d0
-    border: none
     padding: 10px 22px
     border-radius: 8px
     font-weight: 700
@@ -51,4 +54,4 @@
 
     &:hover
         color: #28d2d0
-        background-color: #ffff
+        background-color: #fff
