@@ -5,7 +5,9 @@ import { BsClockHistory } from 'react-icons/bs';
 
 function EventsList ({ events, setEvents }) {
   const handleDelete = indexToDelete => {
-    setEvents(prevEvents => prevEvents.filter((el, i) => i !== indexToDelete));
+    setEvents(prevEvents =>
+      prevEvents.filter(item => item.id !== indexToDelete)
+    );
   };
   const newSortEvents = [...events].sort(
     (a, b) => new Date(a.eventTime) - new Date(b.eventTime)
@@ -23,8 +25,12 @@ function EventsList ({ events, setEvents }) {
         {newSortEvents.length === 0 ? (
           <li className={styles.massageNoEvents}>No events available</li>
         ) : (
-          newSortEvents.map((e, i) => (
-            <EventTimer event={e} key={i} onDelete={() => handleDelete(i)} />
+          newSortEvents.map(e => (
+            <EventTimer
+              event={e}
+              key={e.id}
+              onDelete={() => handleDelete(e.id)}
+            />
           ))
         )}
       </ul>
