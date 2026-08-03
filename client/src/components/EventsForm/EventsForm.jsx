@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
+import { v4 as uuidv4 } from 'uuid';
 import styles from './EventsForm.module.sass';
 import Schems from '../../utils/validators/validationSchems';
 import FormInput from '../FormInput/FormInput';
@@ -15,7 +16,10 @@ function EventsForm ({ events, setEvents }) {
     setEvents(newEvent);
   };
   const handlerSubmit = (values, { resetForm }) => {
-    const newEvent = [...events, values];
+    const newEvent = [
+      ...events,
+      { ...values, createdAt: Date.now(), id: uuidv4() },
+    ];
     saveEvent(newEvent);
     resetForm();
   };
