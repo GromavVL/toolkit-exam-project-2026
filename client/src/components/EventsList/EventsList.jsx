@@ -7,6 +7,9 @@ function EventsList ({ events, setEvents }) {
   const handleDelete = indexToDelete => {
     setEvents(prevEvents => prevEvents.filter((el, i) => i !== indexToDelete));
   };
+  const newSortEvents = [...events].sort(
+    (a, b) => new Date(a.eventTime) - new Date(b.eventTime)
+  );
   return (
     <>
       <div className={styles.headingEventList}>
@@ -17,10 +20,10 @@ function EventsList ({ events, setEvents }) {
         </div>
       </div>
       <ul className={styles.timeRenderList}>
-        {events.length === 0 ? (
+        {newSortEvents.length === 0 ? (
           <li className={styles.massageNoEvents}>No events available</li>
         ) : (
-          events.map((e, i) => (
+          newSortEvents.map((e, i) => (
             <EventTimer event={e} key={i} onDelete={() => handleDelete(i)} />
           ))
         )}
