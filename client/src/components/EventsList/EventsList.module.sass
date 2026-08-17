@@ -2,22 +2,96 @@
     color: rgb(69, 90, 137)
     font-size: 22px
     font-weight: 700
+    margin: 0
+    line-height: 1.2
 
 .titleIcon
+    display: block
+    flex-shrink: 0
     font-size: 22px
     color: rgb(69, 90, 137)
 
     @media (max-width: 715px)
         font-size: 16px
 
+.iconButton
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-shrink: 0
+    padding: 0
+    line-height: 0
+    font-size: 22px
+    color: rgb(69, 90, 137)
+    transition: all 0.25s ease
+    cursor: pointer
+    border: none
+    background: none
+    position: relative
+
+    @media (max-width: 715px)
+        font-size: 16px
+
+    &:hover
+        color: rgb(100, 130, 190)
+
+.elentCount
+    position: absolute
+    background-color: red
+    color: #ffff
+    font-size: 11px
+    line-height: 1
+    padding: 3px 5px 3px 5px
+    left: 22px
+    top: -8px
+    border-radius: 50%
+
+.infoAnchor
+    position: relative
+    display: flex
+    align-items: center
+
+.infoBlock
+    display: flex
+    flex-direction: column
+    background: #28d2d0
+    position: absolute
+    top: calc(100% + 12px)
+    left: 50%
+    transform: translateX(-50%)
+    z-index: 5
+    padding: 12px 15px
+    color: #ffff
+    font-size: 14px
+    line-height: 1.3
+    gap: 5px
+    border-radius: 8px
+    white-space: nowrap
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18)
+
+    &::before
+        content: ''
+        position: absolute
+        bottom: 100%
+        left: 50%
+        transform: translateX(-50%)
+        border: 6px solid transparent
+        border-bottom-color: #28d2d0
+
+    @media (max-width: 715px)
+        font-size: 12px
+        padding: 10px 12px
+
 .timeBlock
     display: flex
     gap: 10px
-    align-items: center 
+    align-items: center
 
 .timeBlockContent
     color: gray
-    
+    margin: 0
+    line-height: 1.2
+
 .headingEventList
     display: flex
     justify-content: space-between
