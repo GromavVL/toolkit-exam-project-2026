@@ -3,11 +3,14 @@
     align-items: center
     justify-content: center
     min-height: 86vh
+    padding: 16px
     box-sizing: border-box
+
+    @media (max-width: 480px)
+        padding: 12px 8px
 
 .eventContainer
     display: flex
-    flex-wrap: wrap
     justify-content: center
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12)
     padding: 24px
@@ -15,27 +18,33 @@
     width: 100%
     max-width: 1025px
     box-sizing: border-box
+    gap: 25px
 
     @media (max-width: 1103px)
         flex-direction: column
-        gap: 24px
         align-items: center
-    @media (max-width: 715px)
+        gap: 24px
+
+    @media (max-width: 768px)
         padding: 20px 14px
         gap: 20px
-    @media (max-width: 360px)
+
+    @media (max-width: 480px)
         padding: 16px 10px
 
 .formContent
     border-right: 2px solid #28d2d0
     box-sizing: border-box
-    flex: 0 1 310px
+    flex: 0 1 355px
+    min-width: 0
 
     @media (max-width: 1103px)
         border: none
         border-bottom: 2px solid #28d2d0
         padding-bottom: 24px
         flex-basis: auto
+        width: 100%
+        max-width: 355px
 
 .listContent
     display: flex
@@ -43,6 +52,7 @@
     align-items: center
     flex: 1 1 560px
     min-width: 0
+    width: 100%
 
     @media (max-width: 1103px)
         flex-basis: auto
