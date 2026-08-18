@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, Form } from 'formik';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './EventsForm.module.sass';
 import Schems from '../../utils/validators/validationSchems';
 import FormInput from '../FormInput/FormInput';
 
-function EventsForm ({ events, setEvents }) {
+function EventsForm ({ setEvents }) {
   const initialValues = {
     eventName: '',
     eventTime: '',
     remiderTime: '',
   };
-  const saveEvent = newEvent => {
-    window.localStorage.setItem('accessEvent', JSON.stringify(newEvent));
-    setEvents(newEvent);
-  };
   const handlerSubmit = (values, { resetForm }) => {
-    const newEvent = [
-      ...events,
+    setEvents(prevEvents => [
+      ...prevEvents,
       { ...values, createdAt: Date.now(), id: uuidv4() },
-    ];
-    saveEvent(newEvent);
+    ]);
     resetForm();
   };
   const formInputClasses = {

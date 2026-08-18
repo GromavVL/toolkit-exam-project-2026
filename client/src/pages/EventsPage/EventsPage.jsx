@@ -18,7 +18,7 @@ function EventsPage () {
     <main className={styles.eventsWrapper}>
       <section className={styles.eventContainer}>
         <div className={styles.formContent}>
-          <EventsForm events={events} setEvents={setEvents} />
+          <EventsForm setEvents={setEvents} />
         </div>
         <div className={styles.listContent}>
           <EventsList events={events} setEvents={setEvents} />
