@@ -1,4 +1,4 @@
-const schems = require('../validationSchemes/schems');
+const schems = require('../utils/schems');
 const ServerError = require('../errors/ServerError');
 const BadRequestError = require('../errors/BadRequestError');
 
