@@ -1,3 +1,5 @@
+const logger = require('../logger');
+
 module.exports = (err, req, res, next) => {
   if (
     err.message ===
@@ -13,4 +15,9 @@ module.exports = (err, req, res, next) => {
   } else {
     res.status(err.code).send(err.message);
   }
+  logger.error({
+    message: err.message,
+    code: err.code || 500,
+    stackTrace: err.stack,
+  });
 };
