@@ -1,6 +1,5 @@
 const pino = require('pino');
-
-// logger.error({ message: '', code: 404, stackTrace: {} });
+const CONSTANT = require('../constants');
 
 const logger = pino(
   {
@@ -12,7 +11,7 @@ const logger = pino(
       },
     },
   },
-  pino.destination(`${__dirname}/log.ndjson`)
+  pino.destination(CONSTANT.LOG_FILE)
 );
 
 module.exports = logger;
