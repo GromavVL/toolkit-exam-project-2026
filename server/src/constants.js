@@ -1,3 +1,6 @@
+const path = require('path');
+const SERVER_ROOT = path.resolve(__dirname, '..');
+
 module.exports = {
   JWT_SECRET: process.env.JWT_SECRET,
   ACCESS_TOKEN_TIME: 60 * 60,
@@ -28,4 +31,9 @@ module.exports = {
   NOTIFICATION_CHANGE_OFFER_STATUS: 'changeOfferStatus',
   NEW_MESSAGE: 'newMessage',
   CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
+  LOG_FILE: path.resolve(SERVER_ROOT, 'src/logger/log.ndjson'),
+  LOGS_DIR: path.resolve(SERVER_ROOT, 'src/logger/logs'),
+  LOG_ENCODING: 'utf8',
+  LOG_ARCHIVE_SUFFIX: '-backup.ndjson',
+  TIMEZONE: 'Europe/Kyiv',
 };
