@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./src/index.js",
+    "start": "nodemon --inspect ./src/index.js",
     "test": "jest"
   },
   "dependencies": {
