@@ -49,6 +49,24 @@ db['Contests'].hasMany(db['Offers'], {
 db['Users'].hasMany(db['Offers'], { foreignKey: 'userId', targetKey: 'id' });
 db['Users'].hasMany(db['Contests'], { foreignKey: 'userId', targetKey: 'id' });
 db['Users'].hasMany(db['Ratings'], { foreignKey: 'userId', targetKey: 'id' });
+db['Users'].hasMany(db['Conversations'], {
+  foreignKey: 'user1Id',
+  sourceKey: 'id',
+  as: 'conversationsAsUser1',
+});
+db['Users'].hasMany(db['Conversations'], {
+  foreignKey: 'user2Id',
+  sourceKey: 'id',
+  as: 'conversationsAsUser2',
+});
+db['Users'].hasMany(db['Messages'], {
+  foreignKey: 'senderId',
+  targetKey: 'id',
+});
+db['Users'].hasMany(db['Catalogs'], {
+  foreignKey: 'userId',
+  targetKey: 'id',
+});
 
 db['Offers'].belongsTo(db['Users'], { foreignKey: 'userId', sourceKey: 'id' });
 db['Offers'].belongsTo(db['Contests'], {
@@ -60,6 +78,52 @@ db['Offers'].hasOne(db['Ratings'], { foreignKey: 'offerId', targetKey: 'id' });
 db['Ratings'].belongsTo(db['Users'], { foreignKey: 'userId', targetKey: 'id' });
 db['Ratings'].belongsTo(db['Offers'], {
   foreignKey: 'offerId',
+  targetKey: 'id',
+});
+
+db['Conversations'].belongsTo(db['Users'], {
+  foreignKey: 'user1Id',
+  targetKey: 'id',
+  as: 'user1',
+});
+db['Conversations'].belongsTo(db['Users'], {
+  foreignKey: 'user2Id',
+  targetKey: 'id',
+  as: 'user2',
+});
+db['Conversations'].hasMany(db['Messages'], {
+  foreignKey: 'conversationId',
+  targetKey: 'id',
+});
+db['Conversations'].hasMany(db['CatalogChats'], {
+  foreignKey: 'conversationId',
+  targetKey: 'id',
+});
+
+db['Messages'].belongsTo(db['Users'], {
+  foreignKey: 'senderId',
+  targetKey: 'id',
+});
+db['Messages'].belongsTo(db['Conversations'], {
+  foreignKey: 'conversationId',
+  targetKey: 'id',
+});
+
+db['Catalogs'].belongsTo(db['Users'], {
+  foreignKey: 'userId',
+  targetKey: 'id',
+});
+db['Catalogs'].hasMany(db['CatalogChats'], {
+  foreignKey: 'catalogId',
+  targetKey: 'id',
+});
+
+db['CatalogChats'].belongsTo(db['Catalogs'], {
+  foreignKey: 'catalogId',
+  targetKey: 'id',
+});
+db['CatalogChats'].belongsTo(db['Conversations'], {
+  foreignKey: 'conversationId',
   targetKey: 'id',
 });
 
