@@ -36,4 +36,11 @@ module.exports = {
   LOG_ENCODING: 'utf8',
   LOG_ARCHIVE_SUFFIX: '-backup.ndjson',
   TIMEZONE: 'Europe/Kyiv',
+  USER_PREVIEW_ATTRIBUTES: [
+    'id',
+    'firstName',
+    'lastName',
+    'displayName',
+    'avatar',
+  ],
 };
