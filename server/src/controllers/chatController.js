@@ -1,11 +1,10 @@
 const Conversation = require('../models/mongoModels/conversation');
 const Message = require('../models/mongoModels/Message');
 const Catalog = require('../models/mongoModels/Catalog');
-const moment = require('moment');
 const db = require('../models');
 const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
-const _ = require('lodash');
+const chatQueries = require('./queries/chatQueries');
 
 module.exports.addMessage = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.recipient];
@@ -120,7 +119,7 @@ module.exports.getChat = async (req, res, next) => {
   }
 };
 
-module.exports.getPreview = async (req, res, next) => {
+module.exports.getPreviewLegacy = async (req, res, next) => {
   try {
     const conversations = await Message.aggregate([
       {
@@ -310,6 +309,36 @@ module.exports.getCatalogs = async (req, res, next) => {
       },
     ]);
     res.send(catalogs);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getPreview = async (req, res, next) => {
+  const { userId } = req.tokenData;
+  try {
+    const conversation = await chatQueries.conversationsPreview(userId);
+    const preview = conversation
+      .filter(convers => convers.Messages.length)
+      .map(convers => {
+        const [lastMessage] = convers.Messages;
+        const interlocutor =
+          convers.user1Id === userId ? convers.user2 : convers.user1;
+
+        return {
+          _id: convers.id,
+          sender: lastMessage.senderId,
+          text: lastMessage.body,
+          createAt: lastMessage.createdAt,
+          participants: [convers.user1Id, convers.user2Id],
+          blackList: [convers.blackList1, convers.blackList2],
+          favoriteList: [convers.favoriteList1, convers.favoriteList2],
+          interlocutor: interlocutor.get(),
+        };
+      })
+      .sort((a, b) => b.createAt - a.createAt);
+
+    res.send(preview);
   } catch (err) {
     next(err);
   }
