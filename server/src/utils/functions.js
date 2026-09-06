@@ -49,3 +49,9 @@ const types = [
   'logo,tagline',
   'name,logo',
 ];
+
+module.exports.participantsSorting = (userId, interlocutorId) => {
+  return userId < interlocutorId
+    ? [userId, interlocutorId]
+    : [interlocutorId, userId];
+};
