@@ -31,3 +31,20 @@ module.exports.conversationsPreview = async userId => {
 
   return conversations;
 };
+
+module.exports.getMessageChat = async (user1Id, user2Id) => {
+  const getMessages = await bd.Messages.findAll({
+    attributes: [['senderId', 'sender'], 'body', 'createdAt'],
+    include: [
+      {
+        model: bd.Conversations,
+        required: true,
+        attributes: [],
+        where: { user1Id, user2Id },
+      },
+    ],
+    order: [['createdAt', 'ASC']],
+  });
+
+  return getMessages;
+};

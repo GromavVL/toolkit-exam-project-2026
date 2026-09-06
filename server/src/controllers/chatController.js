@@ -5,6 +5,7 @@ const db = require('../models');
 const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
 const chatQueries = require('./queries/chatQueries');
+const { participantsSorting } = require('../utils/functions');
 
 module.exports.addMessage = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.recipient];
@@ -72,7 +73,7 @@ module.exports.addMessage = async (req, res, next) => {
   }
 };
 
-module.exports.getChat = async (req, res, next) => {
+module.exports.getChatLegacy = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.interlocutorId];
   participants.sort(
     (participant1, participant2) => participant1 - participant2
@@ -100,7 +101,6 @@ module.exports.getChat = async (req, res, next) => {
         },
       },
     ]);
-
     const interlocutor = await userQueries.findUser({
       id: req.body.interlocutorId,
     });
@@ -339,6 +339,34 @@ module.exports.getPreview = async (req, res, next) => {
       .sort((a, b) => b.createAt - a.createAt);
 
     res.send(preview);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getChat = async (req, res, next) => {
+  const {
+    body: { interlocutorId },
+    tokenData: { userId },
+  } = req;
+  try {
+    const [user1Id, user2Id] = participantsSorting(userId, interlocutorId);
+    const messages = await chatQueries.getMessageChat(user1Id, user2Id);
+
+    const interlocutor = await userQueries.findUser({
+      id: interlocutorId,
+    });
+
+    res.send({
+      messages,
+      interlocutor: {
+        firstName: interlocutor.firstName,
+        lastName: interlocutor.lastName,
+        displayName: interlocutor.displayName,
+        id: interlocutor.id,
+        avatar: interlocutor.avatar,
+      },
+    });
   } catch (err) {
     next(err);
   }
