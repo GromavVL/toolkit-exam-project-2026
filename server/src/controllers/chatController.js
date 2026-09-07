@@ -7,7 +7,7 @@ const controller = require('../socketInit');
 const chatQueries = require('./queries/chatQueries');
 const { participantsSorting } = require('../utils/functions');
 
-module.exports.addMessage = async (req, res, next) => {
+module.exports.addMessageLegacy = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.recipient];
   participants.sort(
     (participant1, participant2) => participant1 - participant2
@@ -366,6 +366,69 @@ module.exports.getChat = async (req, res, next) => {
         id: interlocutor.id,
         avatar: interlocutor.avatar,
       },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.addMessage = async (req, res, next) => {
+  const {
+    tokenData: { userId, firstName, lastName, displayName, avatar, email },
+    body: { recipient, messageBody, interlocutor },
+  } = req;
+  const participants = participantsSorting(userId, recipient);
+  const [user1Id, user2Id] = participants;
+  let transaction;
+  try {
+    transaction = await db.sequelize.transaction();
+    const [conversation] = await db.Conversations.findOrCreate({
+      where: { user1Id, user2Id },
+      transaction,
+    });
+    const createdMessage = await db.Messages.create(
+      {
+        senderId: userId,
+        body: messageBody,
+        conversationId: conversation.id,
+      },
+      { transaction },
+    );
+    await transaction.commit();
+
+    const message = {
+      sender: userId,
+      body: createdMessage.body,
+      createdAt: createdMessage.createdAt,
+      participants,
+    };
+    const preview = {
+      _id: conversation.id,
+      sender: userId,
+      text: createdMessage.body,
+      createAt: createdMessage.createdAt,
+      participants,
+      blackList: [conversation.blackList1, conversation.blackList2],
+      favoriteList: [conversation.favoriteList1, conversation.favoriteList2],
+    };
+
+    controller.getChatController().emitNewMessage(recipient, {
+      message,
+      preview: Object.assign({}, preview, {
+        interlocutor: {
+          id: userId,
+          firstName,
+          lastName,
+          displayName,
+          avatar,
+          email,
+        },
+      }),
+    });
+
+    res.send({
+      message,
+      preview: Object.assign({}, preview, { interlocutor }),
     });
   } catch (err) {
     next(err);
