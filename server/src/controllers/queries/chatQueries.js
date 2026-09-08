@@ -48,3 +48,14 @@ module.exports.getMessageChat = async (user1Id, user2Id) => {
 
   return getMessages;
 };
+
+module.exports.updateFavoriteFlag = async (user1Id, user2Id, field, value) => {
+  const [updatedCount, [updatedFavorite]] = await bd.Conversations.update(
+    { [field]: value },
+    {
+      where: { user1Id, user2Id },
+      returning: true,
+    }
+  );
+  return updatedFavorite;
+};

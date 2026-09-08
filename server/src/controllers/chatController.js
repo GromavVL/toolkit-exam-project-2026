@@ -6,6 +6,8 @@ const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
 const chatQueries = require('./queries/chatQueries');
 const { participantsSorting } = require('../utils/functions');
+const RightsError = require('../errors/RightsError');
+const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.addMessageLegacy = async (req, res, next) => {
   const participants = [req.tokenData.userId, req.body.recipient];
@@ -207,7 +209,7 @@ module.exports.blackList = async (req, res, next) => {
   }
 };
 
-module.exports.favoriteChat = async (req, res, next) => {
+module.exports.favoriteChatLegacy = async (req, res, next) => {
   const predicate =
     'favoriteList.' + req.body.participants.indexOf(req.tokenData.userId);
   try {
@@ -425,10 +427,41 @@ module.exports.addMessage = async (req, res, next) => {
         },
       }),
     });
-
     res.send({
       message,
       preview: Object.assign({}, preview, { interlocutor }),
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.favoriteChat = async (req, res, next) => {
+  const {
+    body: { participants, favoriteFlag },
+    tokenData: { userId },
+  } = req;
+  try {
+    const [user1Id, user2Id] = participantsSorting(...participants);
+    if (userId !== user1Id && userId !== user2Id) {
+      return next(new RightsError());
+    }
+    const field = userId === user1Id ? 'favoriteList1' : 'favoriteList2';
+    const favoriteQuery = await chatQueries.updateFavoriteFlag(
+      user1Id,
+      user2Id,
+      field,
+      favoriteFlag
+    );
+    if (!favoriteQuery) {
+      return next(new BadRequestError('Conversation not found'));
+    }
+
+    res.send({
+      _id: favoriteQuery.id,
+      participants: [favoriteQuery.user1Id, favoriteQuery.user2Id],
+      blackList: [favoriteQuery.blackList1, favoriteQuery.blackList2],
+      favoriteList: [favoriteQuery.favoriteList1, favoriteQuery.favoriteList2],
     });
   } catch (err) {
     next(err);
