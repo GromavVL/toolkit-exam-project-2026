@@ -73,3 +73,15 @@ module.exports.updateBlockFlag = async (user1Id, user2Id, field, value) => {
 
   return updateBlock;
 };
+
+module.exports.createCatalog = async (data, transaction) => {
+  const catalog = await bd.Catalogs.create(data, { transaction });
+
+  return catalog;
+};
+
+module.exports.createCatalogChat = async (data, transaction) => {
+  const catalogChat = await bd.CatalogChats.create(data, { transaction });
+
+  return catalogChat;
+};

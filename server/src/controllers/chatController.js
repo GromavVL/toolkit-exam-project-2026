@@ -224,7 +224,7 @@ module.exports.favoriteChatLegacy = async (req, res, next) => {
   }
 };
 
-module.exports.createCatalog = async (req, res, next) => {
+module.exports.createCatalogLegacy = async (req, res, next) => {
   const catalog = new Catalog({
     userId: req.tokenData.userId,
     catalogName: req.body.catalogName,
@@ -298,7 +298,7 @@ module.exports.deleteCatalog = async (req, res, next) => {
   }
 };
 
-module.exports.getCatalogs = async (req, res, next) => {
+module.exports.getCatalogsLegacy = async (req, res, next) => {
   try {
     const catalogs = await Catalog.aggregate([
       { $match: { userId: req.tokenData.userId } },
@@ -394,7 +394,7 @@ module.exports.addMessage = async (req, res, next) => {
         body: messageBody,
         conversationId: conversation.id,
       },
-      { transaction },
+      { transaction }
     );
     await transaction.commit();
 
@@ -500,6 +500,65 @@ module.exports.blackList = async (req, res, next) => {
     const interlocutorId = userId === user1Id ? user2Id : user1Id;
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
   } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getCatalogs = async (req, res, next) => {
+  const { userId } = req.tokenData;
+  try {
+    const catalogs = await db.Catalogs.findAll({
+      where: { userId },
+      attributes: ['id', 'catalogName'],
+      include: [
+        {
+          model: db.CatalogChats,
+          attributes: ['conversationId'],
+          required: false,
+        },
+      ],
+      order: [['id', 'ASC']],
+    });
+    res.send(
+      catalogs.map(catalog => ({
+        _id: catalog.id,
+        catalogName: catalog.catalogName,
+        chats: catalog.CatalogChats.map(({ conversationId }) => conversationId),
+      }))
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.createCatalog = async (req, res, next) => {
+  const {
+    tokenData: { userId },
+    body: { catalogName, chatId },
+  } = req;
+
+  let transaction;
+  try {
+    transaction = await db.sequelize.transaction();
+    const catalog = await chatQueries.createCatalog(
+      { userId, catalogName },
+      transaction
+    );
+    await chatQueries.createCatalogChat(
+      { catalogId: catalog.id, conversationId: chatId },
+      transaction
+    );
+    await transaction.commit();
+
+    res.send({
+      _id: catalog.id,
+      catalogName: catalog.catalogName,
+      chats: [chatId],
+    });
+  } catch (err) {
+    if (transaction) {
+      await transaction.rollback();
+    }
     next(err);
   }
 };
