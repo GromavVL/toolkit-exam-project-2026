@@ -59,3 +59,17 @@ module.exports.updateFavoriteFlag = async (user1Id, user2Id, field, value) => {
   );
   return updatedFavorite;
 };
+
+module.exports.updateBlockFlag = async (user1Id, user2Id, field, value) => {
+  const [updateCount, [updateBlock]] = await bd.Conversations.update(
+    {
+      [field]: value,
+    },
+    {
+      where: { user1Id, user2Id },
+      returning: true,
+    }
+  );
+
+  return updateBlock;
+};

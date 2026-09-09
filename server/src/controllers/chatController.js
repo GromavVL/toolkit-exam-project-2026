@@ -190,7 +190,7 @@ module.exports.getPreviewLegacy = async (req, res, next) => {
   }
 };
 
-module.exports.blackList = async (req, res, next) => {
+module.exports.blackListLegacy = async (req, res, next) => {
   const predicate =
     'blackList.' + req.body.participants.indexOf(req.tokenData.userId);
   try {
@@ -463,6 +463,42 @@ module.exports.favoriteChat = async (req, res, next) => {
       blackList: [favoriteQuery.blackList1, favoriteQuery.blackList2],
       favoriteList: [favoriteQuery.favoriteList1, favoriteQuery.favoriteList2],
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.blackList = async (req, res, next) => {
+  const {
+    body: { participants, blackListFlag },
+    tokenData: { userId },
+  } = req;
+
+  try {
+    const [user1Id, user2Id] = participantsSorting(...participants);
+    if (userId !== user1Id && userId !== user2Id) {
+      return next(new RightsError());
+    }
+    const field = userId === user1Id ? 'blackList1' : 'blackList2';
+    const blockQuery = await chatQueries.updateBlockFlag(
+      user1Id,
+      user2Id,
+      field,
+      blackListFlag
+    );
+
+    if (!blockQuery) {
+      return next(new BadRequestError('Conversation not found'));
+    }
+    const chat = {
+      _id: blockQuery.id,
+      participants: [blockQuery.user1Id, blockQuery.user2Id],
+      blackList: [blockQuery.blackList1, blockQuery.blackList2],
+      favoriteList: [blockQuery.favoriteList1, blockQuery.favoriteList2],
+    };
+    res.send(chat);
+    const interlocutorId = userId === user1Id ? user2Id : user1Id;
+    controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
   } catch (err) {
     next(err);
   }
