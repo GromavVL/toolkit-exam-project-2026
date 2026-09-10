@@ -1,5 +1,6 @@
 const bd = require('../../models');
 const CONSTANT = require('../../constants');
+const { Op } = require('sequelize');
 
 module.exports.conversationsPreview = async userId => {
   const conversations = await bd.Conversations.findAll({
@@ -84,4 +85,15 @@ module.exports.createCatalogChat = async (data, transaction) => {
   const catalogChat = await bd.CatalogChats.create(data, { transaction });
 
   return catalogChat;
+};
+
+module.exports.updateNameCatalog = async (userId, id, Name) => {
+  const [updateCount, [updatedCatalog]] = await bd.Catalogs.update(
+    { catalogName: Name },
+    {
+      where: { id, userId },
+      returning: true,
+    }
+  );
+  return updatedCatalog;
 };

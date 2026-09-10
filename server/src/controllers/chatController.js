@@ -238,7 +238,7 @@ module.exports.createCatalogLegacy = async (req, res, next) => {
   }
 };
 
-module.exports.updateNameCatalog = async (req, res, next) => {
+module.exports.updateNameCatalogLegacy = async (req, res, next) => {
   try {
     const catalog = await Catalog.findOneAndUpdate(
       {
@@ -254,7 +254,7 @@ module.exports.updateNameCatalog = async (req, res, next) => {
   }
 };
 
-module.exports.addNewChatToCatalog = async (req, res, next) => {
+module.exports.addNewChatToCatalogLegacy = async (req, res, next) => {
   try {
     const catalog = await Catalog.findOneAndUpdate(
       {
@@ -559,6 +559,71 @@ module.exports.createCatalog = async (req, res, next) => {
     if (transaction) {
       await transaction.rollback();
     }
+    next(err);
+  }
+};
+
+module.exports.updateNameCatalog = async (req, res, next) => {
+  const {
+    tokenData: { userId },
+    body: { catalogId, catalogName },
+  } = req;
+  try {
+    const updateCatalog = await chatQueries.updateNameCatalog(
+      userId,
+      catalogId,
+      catalogName
+    );
+    const catalogs = await db.Catalogs.findOne({
+      where: { id: catalogId },
+      include: [
+        {
+          model: db.CatalogChats,
+          attributes: ['conversationId'],
+          required: false,
+        },
+      ],
+    });
+    res.send({
+      _id: updateCatalog.id,
+      user: userId,
+      catalogName: updateCatalog.catalogName,
+      chats: catalogs.CatalogChats.map(({ conversationId }) => conversationId),
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.addNewChatToCatalog = async (req, res, next) => {
+  const {
+    tokenData: { userId },
+    body: { catalogId, chatId },
+  } = req;
+
+  const catalogsId = req.body.catalogId;
+  try {
+    const findCatalog = await db.Catalogs.findOne({
+      where: { id: catalogId, userId },
+    });
+
+    if (!findCatalog) {
+      return res.send({ message: 'Catalog not found' });
+    }
+    const existingChat = await db.CatalogChats.findOne({
+      where: { catalogId, conversationId: chatId },
+    });
+
+    if (existingChat) {
+      return res.send({ message: 'This chat added to catalog' });
+    }
+    const chat = await db.CatalogChats.create({
+      catalogId: catalogsId,
+      conversationId: chatId,
+    });
+
+    res.send(chat);
+  } catch (err) {
     next(err);
   }
 };
