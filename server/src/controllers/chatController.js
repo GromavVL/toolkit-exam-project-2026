@@ -270,7 +270,7 @@ module.exports.addNewChatToCatalogLegacy = async (req, res, next) => {
   }
 };
 
-module.exports.removeChatFromCatalog = async (req, res, next) => {
+module.exports.removeChatFromCatalogLegacy = async (req, res, next) => {
   try {
     const catalog = await Catalog.findOneAndUpdate(
       {
@@ -286,7 +286,7 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
   }
 };
 
-module.exports.deleteCatalog = async (req, res, next) => {
+module.exports.deleteCatalogLegacy = async (req, res, next) => {
   try {
     await Catalog.findByIdAndDelete({
       _id: req.body.catalogId,
@@ -623,6 +623,67 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
     });
 
     res.send(chat);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.removeChatFromCatalog = async (req, res, next) => {
+  const {
+    tokenData: { userId },
+    body: { catalogId, chatId },
+  } = req;
+  const catalogsId = req.body.catalogId;
+  try {
+    const findCatalog = await db.Catalogs.findOne({
+      where: { id: catalogId, userId },
+      include: [
+        {
+          model: db.CatalogChats,
+          attributes: ['conversationId'],
+          required: false,
+        },
+      ],
+    });
+    if (!findCatalog) {
+      return res.send({ message: 'Catalog not found' });
+    }
+
+    const chat = await db.CatalogChats.destroy({
+      where: {
+        catalogId: catalogsId,
+        conversationId: chatId,
+      },
+    });
+
+    const remainingChats = findCatalog.CatalogChats.map(
+      ({ conversationId }) => conversationId
+    ).filter(id => id !== chatId);
+
+    res.send({
+      _id: userId,
+      catalogName: findCatalog.catalogName,
+      chats: remainingChats,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteCatalog = async (req, res, next) => {
+  const {
+    body: { catalogId },
+  } = req;
+  const user = req.tokenData.userId;
+  try {
+    await db.Catalogs.destroy({
+      where: {
+        id: catalogId,
+        userId: user,
+      },
+    });
+
+    res.end();
   } catch (err) {
     next(err);
   }
