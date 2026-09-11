@@ -1,0 +1,170 @@
+{"message":"db.Conversations.find is not a function","code":500,"time":1788793558409}
+{"message":"db.Conversations.find is not a function","code":500,"time":1788793622466}
+{"message":"(intermediate value) is not iterable","code":500,"time":1788794762974}
+{"message":"(intermediate value) is not iterable","code":500,"time":1788794801491}
+{"message":"(intermediate value) is not iterable","code":500,"time":1788794819171}
+{"message":"(intermediate value) is not iterable","code":500,"time":1788794836349}
+{"message":"Missing where attribute in the options parameter passed to findOrCreate. Please note that the API has changed, and is now options only (an object with where, defaults keys, transaction etc.)","code":500,"time":1788795222402}
+{"message":"token error","code":408,"time":1788800209942}
+{"message":"token error","code":408,"time":1788800209943}
+{"message":"token error","code":408,"time":1788800209944}
+{"message":"token error","code":408,"time":1788800217212}
+{"message":"token error","code":408,"time":1788800217213}
+{"message":"token error","code":408,"time":1788800217214}
+{"message":"token error","code":408,"time":1788800219820}
+{"message":"token error","code":408,"time":1788800219821}
+{"message":"token error","code":408,"time":1788800219822}
+{"message":"token error","code":408,"time":1788800222835}
+{"message":"token error","code":408,"time":1788800222836}
+{"message":"token error","code":408,"time":1788800234706}
+{"message":"token error","code":408,"time":1788800234707}
+{"message":"need token","code":408,"time":1788800968526}
+{"message":"need token","code":408,"time":1788800968527}
+{"message":"need token","code":408,"time":1788800968527}
+{"message":"need token","code":408,"time":1788800969734}
+{"message":"need token","code":408,"time":1788800969735}
+{"message":"token error","code":408,"time":1788804679486}
+{"message":"token error","code":408,"time":1788804679488}
+{"message":"token error","code":408,"time":1788804680739}
+{"message":"token error","code":408,"time":1788804680740}
+{"message":"token error","code":408,"time":1788804681336}
+{"message":"token error","code":408,"time":1788804681337}
+{"message":"token error","code":408,"time":1788804681519}
+{"message":"token error","code":408,"time":1788804681520}
+{"message":"token error","code":408,"time":1788804681716}
+{"message":"token error","code":408,"time":1788804681717}
+{"message":"token error","code":408,"time":1788804686272}
+{"message":"token error","code":408,"time":1788804686273}
+{"message":"token error","code":408,"time":1788804686274}
+{"message":"token error","code":408,"time":1788804695534}
+{"message":"token error","code":408,"time":1788804695535}
+{"message":"token error","code":408,"time":1788804695535}
+{"message":"token error","code":408,"time":1788804695652}
+{"message":"token error","code":408,"time":1788804695653}
+{"message":"token error","code":408,"time":1788804711042}
+{"message":"token error","code":408,"time":1788804711043}
+{"message":"token error","code":408,"time":1788804735177}
+{"message":"token error","code":408,"time":1788804735178}
+{"message":"token error","code":408,"time":1788804737096}
+{"message":"token error","code":408,"time":1788804737098}
+{"message":"token error","code":408,"time":1788804737099}
+{"message":"token error","code":408,"time":1788804737099}
+{"message":"need token","code":408,"time":1788805083898}
+{"message":"need token","code":408,"time":1788805083900}
+{"message":"need token","code":408,"time":1788805083900}
+{"message":"need token","code":408,"time":1788805084943}
+{"message":"need token","code":408,"time":1788805084945}
+{"message":"need token","code":408,"time":1788805623421}
+{"message":"need token","code":408,"time":1788805623422}
+{"message":"need token","code":408,"time":1788805623423}
+{"message":"need token","code":408,"time":1788805624648}
+{"message":"need token","code":408,"time":1788805624650}
+{"message":"token error","code":408,"time":1788852191882}
+{"message":"token error","code":408,"time":1788852191884}
+{"message":"token error","code":408,"time":1788852191885}
+{"message":"token error","code":408,"time":1788852191976}
+{"message":"token error","code":408,"time":1788852191977}
+{"message":"token error","code":408,"time":1788852193859}
+{"message":"token error","code":408,"time":1788852193860}
+{"message":"token error","code":408,"time":1788852193861}
+{"message":"token error","code":408,"time":1788852193955}
+{"message":"token error","code":408,"time":1788852193956}
+{"message":"token error","code":408,"time":1788852195903}
+{"message":"token error","code":408,"time":1788852195910}
+{"message":"token error","code":408,"time":1788852195911}
+{"message":"token error","code":408,"time":1788852196637}
+{"message":"token error","code":408,"time":1788852196639}
+{"message":"need token","code":408,"time":1788855377329}
+{"message":"need token","code":408,"time":1788855377333}
+{"message":"need token","code":408,"time":1788855377336}
+{"message":"need token","code":408,"time":1788855378630}
+{"message":"need token","code":408,"time":1788855378632}
+{"message":"need token","code":408,"time":1788855378636}
+{"message":"token error","code":408,"time":1788855947773}
+{"message":"token error","code":408,"time":1788855947779}
+{"message":"token error","code":408,"time":1788855950830}
+{"message":"token error","code":408,"time":1788855950833}
+{"message":"token error","code":408,"time":1788855955048}
+{"message":"token error","code":408,"time":1788855955050}
+{"message":"token error","code":408,"time":1788855955052}
+{"message":"token error","code":408,"time":1788855958191}
+{"message":"token error","code":408,"time":1788855958193}
+{"message":"token error","code":408,"time":1788855966441}
+{"message":"token error","code":408,"time":1788855966442}
+{"message":"need token","code":408,"time":1788859408017}
+{"message":"need token","code":408,"time":1788859422333}
+{"message":"need token","code":408,"time":1788860316426}
+{"message":"need token","code":408,"time":1788860316429}
+{"message":"need token","code":408,"time":1788860317311}
+{"message":"need token","code":408,"time":1788860317316}
+{"message":"Wrong password","code":404,"time":1788860325651}
+{"message":"token error","code":408,"time":1788863468535}
+{"message":"token error","code":408,"time":1788863468539}
+{"message":"token error","code":408,"time":1788863468542}
+{"message":"token error","code":408,"time":1788863965113}
+{"message":"token error","code":408,"time":1788863965117}
+{"message":"token error","code":408,"time":1788863965119}
+{"message":"token error","code":408,"time":1788863968057}
+{"message":"token error","code":408,"time":1788863968058}
+{"message":"token error","code":408,"time":1788863968060}
+{"message":"token error","code":408,"time":1788863968507}
+{"message":"token error","code":408,"time":1788863968510}
+{"message":"token error","code":408,"time":1788863977041}
+{"message":"token error","code":408,"time":1788863977043}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865776538}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865892666}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865940368}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865941038}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865941555}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865942008}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865942581}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865948817}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788865975856}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866165931}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866169547}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866198927}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866273602}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866276218}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866294514}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866300505}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866313130}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866372915}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788866377185}
+{"message":"token error","code":408,"time":1788868679777}
+{"message":"token error","code":408,"time":1788868679779}
+{"message":"token error","code":408,"time":1788868679780}
+{"message":"token error","code":408,"time":1788868685007}
+{"message":"token error","code":408,"time":1788868685008}
+{"message":"token error","code":408,"time":1788868685008}
+{"message":"token error","code":408,"time":1788868687499}
+{"message":"token error","code":408,"time":1788868687500}
+{"message":"token error","code":408,"time":1788868696256}
+{"message":"token error","code":408,"time":1788868696257}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788868713229}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788868772707}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788868786301}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788868795978}
+{"message":"need token","code":408,"time":1788868806159}
+{"message":"need token","code":408,"time":1788868806160}
+{"message":"need token","code":408,"time":1788868806161}
+{"message":"need token","code":408,"time":1788868809529}
+{"message":"need token","code":408,"time":1788868809532}
+{"message":"need token","code":408,"time":1788868809534}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788868883932}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1788869016392}
+{"message":"token error","code":408,"time":1788872885847}
+{"message":"token error","code":408,"time":1788872885849}
+{"message":"token error","code":408,"time":1788872885850}
+{"message":"token error","code":408,"time":1788872888337}
+{"message":"token error","code":408,"time":1788872888338}
+{"message":"token error","code":408,"time":1788872888339}
+{"message":"token error","code":408,"time":1788872889712}
+{"message":"token error","code":408,"time":1788872889714}
+{"message":"token error","code":408,"time":1788872897002}
+{"message":"token error","code":408,"time":1788872897003}
+{"message":"token error","code":408,"time":1788880685970}
+{"message":"token error","code":408,"time":1788880685972}
+{"message":"token error","code":408,"time":1788880685974}
+{"message":"token error","code":408,"time":1788880687845}
+{"message":"token error","code":408,"time":1788880687845}
+{"message":"token error","code":408,"time":1788880687846}

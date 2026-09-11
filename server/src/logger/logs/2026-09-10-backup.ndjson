@@ -1,0 +1,119 @@
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788967177239}
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788967205172}
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788967256051}
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788967725621}
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788967727202}
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788967736216}
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788967739191}
+{"message":"token error","code":408,"time":1788974699647}
+{"message":"token error","code":408,"time":1788974699649}
+{"message":"token error","code":408,"time":1788974699650}
+{"message":"token error","code":408,"time":1788974702675}
+{"message":"token error","code":408,"time":1788974702676}
+{"message":"token error","code":408,"time":1788974706589}
+{"message":"token error","code":408,"time":1788974706590}
+{"message":"token error","code":408,"time":1788974713449}
+{"message":"token error","code":408,"time":1788974713450}
+{"message":"Conversations is not associated to Catalogs!","code":500,"time":1788974728267}
+{"message":"Cast to ObjectId failed for value \"1\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1788975555151}
+{"message":"Cast to ObjectId failed for value \"{ _id: 5, userId: 1 }\" (type Object) at path \"_id\" for model \"Catalog\"","code":500,"time":1788975681773}
+{"message":"Cast to ObjectId failed for value \"3\" (type string) at path \"_id\" for model \"Catalog\"","code":500,"time":1788975910491}
+{"message":"Catalog validation failed: chats.0: Cast to [ObjectId] failed for value \"[ 5 ]\" (type string) at path \"chats.0\" because of \"CastError\"","code":500,"time":1788975917182}
+{"message":"token error","code":408,"time":1788978749657}
+{"message":"token error","code":408,"time":1788978749659}
+{"message":"token error","code":408,"time":1788978749661}
+{"message":"token error","code":408,"time":1788978751552}
+{"message":"token error","code":408,"time":1788978751553}
+{"message":"token error","code":408,"time":1788978751554}
+{"message":"token error","code":408,"time":1788978752433}
+{"message":"token error","code":408,"time":1788978752434}
+{"message":"token error","code":408,"time":1788978752436}
+{"message":"token error","code":408,"time":1788978758773}
+{"message":"token error","code":408,"time":1788978758774}
+{"message":"Catalog validation failed: chats.0: Cast to [ObjectId] failed for value \"[ 5 ]\" (type string) at path \"chats.0\" because of \"CastError\"","code":500,"time":1788978774981}
+{"message":"Catalog validation failed: chats.0: Cast to [ObjectId] failed for value \"[ 5 ]\" (type string) at path \"chats.0\" because of \"CastError\"","code":500,"time":1788979769377}
+{"message":"Catalog validation failed: chats.0: Cast to [ObjectId] failed for value \"[ 5 ]\" (type string) at path \"chats.0\" because of \"CastError\"","code":500,"time":1788979877276}
+{"message":"Catalog validation failed: chats.0: Cast to [ObjectId] failed for value \"[ 5 ]\" (type string) at path \"chats.0\" because of \"CastError\"","code":500,"time":1788979906957}
+{"message":"Cast to ObjectId failed for value \"5\" (type string) at path \"_id\" for model \"Catalog\"","code":500,"time":1788979924222}
+{"message":"Catalog validation failed: chats.0: Cast to [ObjectId] failed for value \"[ 2 ]\" (type string) at path \"chats.0\" because of \"CastError\"","code":500,"time":1788979931002}
+{"message":"Cast to ObjectId failed for value \"{ _id: 5, userId: 1 }\" (type Object) at path \"_id\" for model \"Catalog\"","code":500,"time":1788980195707}
+{"message":"token error","code":408,"time":1789029547291}
+{"message":"token error","code":408,"time":1789029547295}
+{"message":"token error","code":408,"time":1789029555039}
+{"message":"token error","code":408,"time":1789029555043}
+{"message":"Cast to ObjectId failed for value \"6\" (type string) at path \"_id\" for model \"Catalog\"","code":500,"time":1789029686234}
+{"message":"Cast to ObjectId failed for value \"1\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789029700838}
+{"message":"Cast to ObjectId failed for value \"1\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789029717192}
+{"message":"Cast to ObjectId failed for value \"5\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789030746475}
+{"message":"Cast to ObjectId failed for value \"5\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789030868591}
+{"message":"Cast to ObjectId failed for value \"3\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789032648361}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789032681804}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789032700476}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789032724970}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789032792308}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789032846630}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789032949268}
+{"message":"token error","code":408,"time":1789033446364}
+{"message":"token error","code":408,"time":1789033446370}
+{"message":"token error","code":408,"time":1789033446373}
+{"message":"token error","code":408,"time":1789033451395}
+{"message":"token error","code":408,"time":1789033451396}
+{"message":"token error","code":408,"time":1789033453526}
+{"message":"token error","code":408,"time":1789033453528}
+{"message":"token error","code":408,"time":1789033454864}
+{"message":"token error","code":408,"time":1789033454868}
+{"message":"token error","code":408,"time":1789033466232}
+{"message":"token error","code":408,"time":1789033466235}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789033746373}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789033787434}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789033840709}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789033915863}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789033934935}
+{"message":"undefined is not iterable (cannot read property Symbol(Symbol.iterator))","code":500,"time":1789034252980}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789034323673}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789034892151}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789034901725}
+{"message":"стовпця \"catalogId\" не існує","code":500,"time":1789034976425}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789035562885}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789035586364}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789036327994}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789036358533}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789036464089}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789036815121}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789036823900}
+{"message":"token error","code":408,"time":1789037064454}
+{"message":"token error","code":408,"time":1789037064461}
+{"message":"token error","code":408,"time":1789037070721}
+{"message":"token error","code":408,"time":1789037070723}
+{"message":"token error","code":408,"time":1789037070725}
+{"message":"token error","code":408,"time":1789037072801}
+{"message":"token error","code":408,"time":1789037072803}
+{"message":"token error","code":408,"time":1789037072805}
+{"message":"sequelize is not defined","code":500,"time":1789039270490}
+{"message":"стовпця \"conversationId\" не існує","code":500,"time":1789039557685}
+{"message":"Cannot read properties of undefined (reading 'map')","code":500,"time":1789040387031}
+{"message":"token error","code":408,"time":1789042301575}
+{"message":"token error","code":408,"time":1789042301577}
+{"message":"token error","code":408,"time":1789042301578}
+{"message":"token error","code":408,"time":1789042304319}
+{"message":"token error","code":408,"time":1789042304320}
+{"message":"Cast to ObjectId failed for value \"1\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789042678976}
+{"message":"Cast to ObjectId failed for value \"7\" (type string) at path \"_id\" for model \"Catalog\"","code":500,"time":1789042716679}
+{"message":"token error","code":408,"time":1789043145307}
+{"message":"token error","code":408,"time":1789043145308}
+{"message":"token error","code":408,"time":1789044439298}
+{"message":"token error","code":408,"time":1789044439301}
+{"message":"need token","code":408,"time":1789044500578}
+{"message":"need token","code":408,"time":1789044500580}
+{"message":"need token","code":408,"time":1789044500581}
+{"message":"need token","code":408,"time":1789044500582}
+{"message":"token error","code":408,"time":1789047394772}
+{"message":"token error","code":408,"time":1789047394774}
+{"message":"token error","code":408,"time":1789047394780}
+{"message":"token error","code":408,"time":1789048612478}
+{"message":"token error","code":408,"time":1789048612483}
+{"message":"token error","code":408,"time":1789049619930}
+{"message":"token error","code":408,"time":1789049619932}
+{"message":"token error","code":408,"time":1789049619934}
+{"message":"token error","code":408,"time":1789049621207}
+{"message":"token error","code":408,"time":1789049621210}

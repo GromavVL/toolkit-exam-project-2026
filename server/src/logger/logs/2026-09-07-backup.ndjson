@@ -1,0 +1,91 @@
+{"message":"Support for literal replacements in the `where` object has been removed.","code":500,"time":1788706868091}
+{"message":"Support for literal replacements in the `where` object has been removed.","code":500,"time":1788706871889}
+{"message":"Support for literal replacements in the `where` object has been removed.","code":500,"time":1788706883374}
+{"message":"Support for literal replacements in the `where` object has been removed.","code":500,"time":1788706914806}
+{"message":"token error","code":408,"time":1788709561338}
+{"message":"token error","code":408,"time":1788709561340}
+{"message":"token error","code":408,"time":1788709561341}
+{"message":"token error","code":408,"time":1788709566609}
+{"message":"token error","code":408,"time":1788709566610}
+{"message":"token error","code":408,"time":1788709566611}
+{"message":"token error","code":408,"time":1788709568022}
+{"message":"token error","code":408,"time":1788709568023}
+{"message":"token error","code":408,"time":1788709575911}
+{"message":"token error","code":408,"time":1788709575912}
+{"message":"Catalog validation failed: chats.0: Cast to [ObjectId] failed for value \"[ 2 ]\" (type string) at path \"chats.0\" because of \"CastError\"","code":500,"time":1788710414549}
+{"message":"notNull Violation: Catalogs.userId cannot be null,\nnotNull Violation: Catalogs.catalogName cannot be null","code":500,"time":1788711304378}
+{"message":"notNull Violation: Catalogs.userId cannot be null,\nnotNull Violation: Catalogs.catalogName cannot be null","code":500,"time":1788711340878}
+{"message":"notNull Violation: Catalogs.userId cannot be null,\nnotNull Violation: Catalogs.catalogName cannot be null","code":500,"time":1788711371616}
+{"message":"notNull Violation: Catalogs.userId cannot be null,\nnotNull Violation: Catalogs.catalogName cannot be null","code":500,"time":1788711399740}
+{"message":"notNull Violation: Catalogs.userId cannot be null,\nnotNull Violation: Catalogs.catalogName cannot be null","code":500,"time":1788711618616}
+{"message":"notNull Violation: Catalogs.userId cannot be null,\nnotNull Violation: Catalogs.catalogName cannot be null","code":500,"time":1788711634880}
+{"message":"token error","code":408,"time":1788781290739}
+{"message":"token error","code":408,"time":1788781290742}
+{"message":"token error","code":408,"time":1788781298279}
+{"message":"token error","code":408,"time":1788781298281}
+{"message":"token error","code":408,"time":1788789229681}
+{"message":"token error","code":408,"time":1788789229683}
+{"message":"token error","code":408,"time":1788789229683}
+{"message":"token error","code":408,"time":1788789231961}
+{"message":"token error","code":408,"time":1788789231961}
+{"message":"token error","code":408,"time":1788789231962}
+{"message":"token error","code":408,"time":1788789238233}
+{"message":"token error","code":408,"time":1788789238234}
+{"message":"token error","code":408,"time":1788789246326}
+{"message":"token error","code":408,"time":1788789246328}
+{"message":"стовпець Conversation.user1 не існує","code":500,"time":1788789754715}
+{"message":"стовпець Conversation.user1 не існує","code":500,"time":1788789798370}
+{"message":"стовпець Conversation.user1 не існує","code":500,"time":1788789805406}
+{"message":"стовпець Conversation.user1 не існує","code":500,"time":1788789826939}
+{"message":"стовпець Conversation.user1 не існує","code":500,"time":1788790065977}
+{"message":"стовпець Conversation.user1 не існує","code":500,"time":1788790091669}
+{"message":"token error","code":408,"time":1788792861725}
+{"message":"token error","code":408,"time":1788792861731}
+{"message":"token error","code":408,"time":1788792863020}
+{"message":"token error","code":408,"time":1788792863022}
+{"message":"token error","code":408,"time":1788792895216}
+{"message":"token error","code":408,"time":1788792895219}
+{"message":"token error","code":408,"time":1788792895220}
+{"message":"token error","code":408,"time":1788792896394}
+{"message":"token error","code":408,"time":1788792896395}
+{"message":"token error","code":408,"time":1788792898967}
+{"message":"token error","code":408,"time":1788792898969}
+{"message":"token error","code":408,"time":1788792899155}
+{"message":"token error","code":408,"time":1788792899157}
+{"message":"token error","code":408,"time":1788792899306}
+{"message":"token error","code":408,"time":1788792899307}
+{"message":"token error","code":408,"time":1788792934813}
+{"message":"token error","code":408,"time":1788792934816}
+{"message":"token error","code":408,"time":1788792934817}
+{"message":"token error","code":408,"time":1788792935245}
+{"message":"token error","code":408,"time":1788792935246}
+{"message":"token error","code":408,"time":1788792935711}
+{"message":"token error","code":408,"time":1788792935712}
+{"message":"token error","code":408,"time":1788792935888}
+{"message":"token error","code":408,"time":1788792935889}
+{"message":"token error","code":408,"time":1788792936030}
+{"message":"token error","code":408,"time":1788792936030}
+{"message":"token error","code":408,"time":1788792936189}
+{"message":"token error","code":408,"time":1788792936189}
+{"message":"token error","code":408,"time":1788792936300}
+{"message":"token error","code":408,"time":1788792936301}
+{"message":"token error","code":408,"time":1788792946889}
+{"message":"token error","code":408,"time":1788792946890}
+{"message":"token error","code":408,"time":1788792947086}
+{"message":"token error","code":408,"time":1788792947087}
+{"message":"token error","code":408,"time":1788792947087}
+{"message":"token error","code":408,"time":1788792947247}
+{"message":"token error","code":408,"time":1788792947248}
+{"message":"token error","code":408,"time":1788792947410}
+{"message":"token error","code":408,"time":1788792947411}
+{"message":"token error","code":408,"time":1788792948599}
+{"message":"token error","code":408,"time":1788792948600}
+{"message":"token error","code":408,"time":1788792948601}
+{"message":"token error","code":408,"time":1788792950938}
+{"message":"token error","code":408,"time":1788792950940}
+{"message":"token error","code":408,"time":1788792950941}
+{"message":"token error","code":408,"time":1788792969885}
+{"message":"token error","code":408,"time":1788792969885}
+{"message":"token error","code":408,"time":1788792969886}
+{"message":"token error","code":408,"time":1788792971243}
+{"message":"token error","code":408,"time":1788792971245}

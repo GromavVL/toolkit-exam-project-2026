@@ -1,0 +1,99 @@
+{"message":"token error","code":408,"time":1789052589995}
+{"message":"token error","code":408,"time":1789052589998}
+{"message":"Cast to ObjectId failed for value \"2\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789052623309}
+{"message":"token error","code":408,"time":1789053271348}
+{"message":"token error","code":408,"time":1789053271354}
+{"message":"token error","code":408,"time":1789053273970}
+{"message":"token error","code":408,"time":1789053273973}
+{"message":"token error","code":408,"time":1789053274828}
+{"message":"token error","code":408,"time":1789053274831}
+{"message":"token error","code":408,"time":1789053275230}
+{"message":"token error","code":408,"time":1789053275232}
+{"message":"token error","code":408,"time":1789053275389}
+{"message":"token error","code":408,"time":1789053275391}
+{"message":"token error","code":408,"time":1789053275520}
+{"message":"token error","code":408,"time":1789053275522}
+{"message":"token error","code":408,"time":1789053275639}
+{"message":"token error","code":408,"time":1789053275641}
+{"message":"token error","code":408,"time":1789053293875}
+{"message":"token error","code":408,"time":1789053293877}
+{"message":"token error","code":408,"time":1789053293878}
+{"message":"token error","code":408,"time":1789053295884}
+{"message":"token error","code":408,"time":1789066661659}
+{"message":"token error","code":408,"time":1789066662805}
+{"message":"token error","code":408,"time":1789066662809}
+{"message":"повторювані значення ключа порушують обмеження унікальності \"CatalogChats_pkey\"","code":500,"time":1789066705260}
+{"message":"повторювані значення ключа порушують обмеження унікальності \"CatalogChats_pkey\"","code":500,"time":1789066718492}
+{"message":"token error","code":408,"time":1789066916664}
+{"message":"token error","code":408,"time":1789066916666}
+{"message":"token error","code":408,"time":1789066916668}
+{"message":"повторювані значення ключа порушують обмеження унікальності \"CatalogChats_pkey\"","code":500,"time":1789066969837}
+{"message":"not enough rights","code":423,"time":1789067551936}
+{"message":"token error","code":408,"time":1789115246463}
+{"message":"token error","code":408,"time":1789115246469}
+{"message":"token error","code":408,"time":1789115246472}
+{"message":"token error","code":408,"time":1789115251008}
+{"message":"token error","code":408,"time":1789115251009}
+{"message":"token error","code":408,"time":1789115251012}
+{"message":"token error","code":408,"time":1789115253318}
+{"message":"token error","code":408,"time":1789115253319}
+{"message":"Cast to ObjectId failed for value \"3\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789115495825}
+{"message":"token error","code":408,"time":1789115987086}
+{"message":"token error","code":408,"time":1789115987087}
+{"message":"token error","code":408,"time":1789115987088}
+{"message":"Cast to ObjectId failed for value \"3\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789117400037}
+{"message":"Cast to ObjectId failed for value \"3\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789117434551}
+{"message":"Cast to ObjectId failed for value \"3\" (type number) at path \"_id\" for model \"Catalog\"","code":500,"time":1789117444474}
+{"message":"Argument passed to findByPk is invalid: [object Object]","code":500,"time":1789117485878}
+{"message":"Argument passed to findByPk is invalid: [object Object]","code":500,"time":1789117524360}
+{"message":"need token","code":408,"time":1789117845729}
+{"message":"token error","code":408,"time":1789119356335}
+{"message":"token error","code":408,"time":1789119356337}
+{"message":"need token","code":408,"time":1789119407608}
+{"message":"need token","code":408,"time":1789119407609}
+{"message":"need token","code":408,"time":1789119407609}
+{"message":"need token","code":408,"time":1789119408724}
+{"message":"need token","code":408,"time":1789119408725}
+{"message":"need token","code":408,"time":1789119408725}
+{"message":"token error","code":408,"time":1789127653451}
+{"message":"token error","code":408,"time":1789127653453}
+{"message":"token error","code":408,"time":1789127653454}
+{"message":"token error","code":408,"time":1789127655037}
+{"message":"token error","code":408,"time":1789127655039}
+{"message":"token error","code":408,"time":1789127657203}
+{"message":"token error","code":408,"time":1789127657204}
+{"message":"token error","code":408,"time":1789127657205}
+{"message":"token error","code":408,"time":1789127660467}
+{"message":"token error","code":408,"time":1789127660469}
+{"message":"db.CatalogChats.delete is not a function","code":500,"time":1789127876231}
+{"message":"Missing where or truncate attribute in the options parameter of model.destroy.","code":500,"time":1789127907465}
+{"message":"Missing where or truncate attribute in the options parameter of model.destroy.","code":500,"time":1789127986608}
+{"message":"token error","code":408,"time":1789128322967}
+{"message":"token error","code":408,"time":1789128322969}
+{"message":"token error","code":408,"time":1789128322970}
+{"message":"findCatalog.map is not a function","code":500,"time":1789130312904}
+{"message":"findCatalog.map is not a function","code":500,"time":1789130353136}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789131906109}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789131980529}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132015696}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132095756}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132109818}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132119052}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132136899}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132170735}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132784095}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789132892745}
+{"message":"token error","code":408,"time":1789133017267}
+{"message":"token error","code":408,"time":1789133017270}
+{"message":"token error","code":408,"time":1789133017271}
+{"message":"token error","code":408,"time":1789133018185}
+{"message":"token error","code":408,"time":1789133018186}
+{"message":"token error","code":408,"time":1789133020090}
+{"message":"token error","code":408,"time":1789133020091}
+{"message":"token error","code":408,"time":1789133020092}
+{"message":"token error","code":408,"time":1789133020886}
+{"message":"token error","code":408,"time":1789133020888}
+{"message":"token error","code":408,"time":1789133020889}
+{"message":"Cannot read properties of undefined (reading 'destroy')","code":500,"time":1789133031306}
+{"message":"token error","code":408,"time":1789134393397}
+{"message":"token error","code":408,"time":1789134393399}
