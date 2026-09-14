@@ -53,7 +53,7 @@ class Header extends React.Component {
                   <span>My Account</span>
                 </Link>
               </li>
-              {this.props.data && this.props.data.role !== CONSTANTS.CREATOR && (
+              {this.props.data && this.props.data.role === CONSTANTS.CUSTOMER && (
                 <li>
                   <Link to='/events' style={{ textDecoration: 'none' }}>
                     <span>Events</span>
@@ -274,13 +274,18 @@ class Header extends React.Component {
                 </li>
               </ul>
             </div>
-            {this.props.data && this.props.data.role !== CONSTANTS.CREATOR && (
+            {this.props.data && this.props.data.role === CONSTANTS.CUSTOMER && (
               <div
                 className={styles.startContestBtn}
                 onClick={this.startContests}
               >
                 START CONTEST
               </div>
+            )}
+            {this.props.data && this.props.data.role === CONSTANTS.MODERATOR && (
+              <Link to='/moderatorPage' className={styles.startContestBtn}>
+                REVIEW OFFER
+              </Link>
             )}
           </div>
         </div>
