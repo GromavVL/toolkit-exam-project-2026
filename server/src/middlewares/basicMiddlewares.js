@@ -116,3 +116,11 @@ module.exports.canUpdateContest = async (req, res, next) => {
     next(new ServerError());
   }
 };
+
+module.exports.onlyForModerator = async (req, res, next) => {
+  if (req.tokenData.role !== CONSTANTS.MODERATOR) {
+    return next(new RightsError());
+  } else {
+    next();
+  }
+};
