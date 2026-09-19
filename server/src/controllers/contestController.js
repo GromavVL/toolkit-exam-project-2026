@@ -311,3 +311,29 @@ module.exports.getContests = (req, res, next) => {
       next(new ServerError());
     });
 };
+
+module.exports.getPendingOffers = async (req, res, next) => {
+  try {
+    const offers = await db.Offers.findAll({
+      where: {
+        status: 'pending',
+      },
+      include: [
+        {
+          model: db.Contests,
+          attributes: [
+            'title',
+            'industry',
+            'contestType',
+            'fileName',
+            'styleName',
+            'contestType',
+          ],
+        },
+      ],
+    });
+    res.send(offers);
+  } catch (err) {
+    next(err);
+  }
+};

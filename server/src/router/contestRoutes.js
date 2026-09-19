@@ -60,4 +60,11 @@ router.post(
   contestController.setOfferStatus
 );
 
+router.get(
+  '/getAllPendingOffers',
+  checkToken.checkToken,
+  basicMiddlewares.onlyForModerator,
+  contestController.getPendingOffers
+);
+
 module.exports = router;
