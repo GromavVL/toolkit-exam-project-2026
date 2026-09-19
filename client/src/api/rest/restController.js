@@ -61,3 +61,5 @@ export const getContestById = data =>
       contestId: data.contestId,
     },
   });
+
+export const getPendingOffers = () => http.get('getAllPendingOffers');
