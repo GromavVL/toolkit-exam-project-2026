@@ -78,6 +78,12 @@ module.exports.getContestById = async (req, res, next) => {
       ],
     });
     contestInfo = contestInfo.get({ plain: true });
+    const hasWinner = contestInfo.Offers.some(offer => offer.status === 'won');
+    if (!hasWinner && req.tokenData.role !== CONSTANTS.CREATOR) {
+      contestInfo.Offers = contestInfo.Offers.filter(
+        offer => offer.status === 'approved'
+      );
+    }
     contestInfo.Offers.forEach(offer => {
       if (offer.Rating) {
         offer.mark = offer.Rating.mark;
@@ -191,6 +197,7 @@ const resolveOffer = async (
     },
     {
       contestId,
+      status: CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED,
     },
     transaction
   );
@@ -214,7 +221,9 @@ const resolveOffer = async (
   controller
     .getNotificationController()
     .emitChangeOfferStatus(creatorId, 'Someone of your offers WIN', contestId);
-  return updatedOffers[0].dataValues;
+
+  const winningOffer = updatedOffers.find(offer => offer.id === offerId);
+  return winningOffer.dataValues;
 };
 
 module.exports.setOfferStatus = async (req, res, next) => {
@@ -333,6 +342,20 @@ module.exports.getPendingOffers = async (req, res, next) => {
       ],
     });
     res.send(offers);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.setReviewOffers = async (req, res, next) => {
+  const idOffer = req.body.id;
+  const reviewStatus = req.body.status;
+  try {
+    const offer = await contestQueries.updateReviewStatus(
+      idOffer,
+      reviewStatus
+    );
+    res.send(offer);
   } catch (err) {
     next(err);
   }
