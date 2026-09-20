@@ -23,6 +23,8 @@ module.exports = {
   OFFER_STATUS_PENDING: 'pending',
   OFFER_STATUS_REJECTED: 'rejected',
   OFFER_STATUS_WON: 'won',
+  OFFER_STATUS_MODERATOR_APPROVED: 'approved',
+  OFFER_STATUS_MODERATOR_CANCEL: 'cancel',
   FILES_PATH: 'public/',
   SOCKET_CONNECTION: 'connection',
   SOCKET_SUBSCRIBE: 'subscribe',
