@@ -1,5 +1,6 @@
 const bd = require('../../models');
 const ServerError = require('../../errors/ServerError');
+const CONSTANTS = require('../../constants');
 
 module.exports.updateContest = async (data, predicate, transaction) => {
   const [updatedCount, [updatedContest]] = await bd.Contests.update(data, {
@@ -59,5 +60,33 @@ module.exports.createOffer = async data => {
     throw new ServerError('cannot create new Offer');
   } else {
     return result.get({ plain: true });
+  }
+};
+
+module.exports.updateReviewStatus = async (idOffer, reviewStatus) => {
+  if (reviewStatus === CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED) {
+    const [, result] = await bd.Offers.update(
+      { status: reviewStatus },
+      {
+        where: {
+          id: idOffer,
+        },
+        returning: true,
+      }
+    );
+    return result;
+  } else if (reviewStatus === CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL) {
+    const [, result] = await bd.Offers.update(
+      { status: reviewStatus },
+      {
+        where: {
+          id: idOffer,
+        },
+        returning: true,
+      }
+    );
+    return result;
+  } else {
+    return new ServerError();
   }
 };
