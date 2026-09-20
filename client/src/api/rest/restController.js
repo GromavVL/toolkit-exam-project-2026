@@ -63,3 +63,4 @@ export const getContestById = data =>
   });
 
 export const getPendingOffers = () => http.get('getAllPendingOffers');
+export const setReviewOfferStatus = data => http.patch('setReviewOffers', data);
