@@ -150,6 +150,30 @@ const getPendingOffersExtraReducers = createExtraReducers({
   },
 });
 
+export const setReviewOfferStatus = decorateAsyncThunk({
+  key: `${CONTEST_BY_ID_SLICE_NAME}/setReviewOfferStatus`,
+  thunk: async payload => {
+    const { data } = await restController.setReviewOfferStatus(payload);
+    return data;
+  },
+});
+
+const setReviewOfferExtraReducers = createExtraReducers({
+  thunk: setReviewOfferStatus,
+  pendingReducer: state => {
+    state.isFetching = true;
+    state.error = null;
+  },
+  fulfilledReducer: (state, { payload }) => {
+    state.offers = state.offers.filter(o => o.id !== payload[0].id);
+    state.isFetching = false;
+  },
+  rejectedReducer: (state, { payload }) => {
+    state.isFetching = false;
+    state.error = payload;
+  },
+});
+
 const reducers = {
   updateStoreAfterUpdateContest: (state, { payload }) => {
     state.error = null;
@@ -184,6 +208,7 @@ const extraReducers = builder => {
   setOfferStatusExtraReducers(builder);
   changeMarkExtraReducers(builder);
   getPendingOffersExtraReducers(builder);
+  setReviewOfferExtraReducers(builder);
 };
 
 const contestByIdSlice = createSlice({
