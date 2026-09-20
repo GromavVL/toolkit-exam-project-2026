@@ -10,7 +10,22 @@ const MetaRow = ({ title, value }) => (
 );
 
 const OfferBoxReview = props => {
-  const { offers } = props;
+  const { offers, setReviewOfferStatus } = props;
+
+  const approvedOffer = id => {
+    const data = {
+      id: id,
+      status: CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED,
+    };
+    setReviewOfferStatus(data);
+  };
+  const cancelOffer = id => {
+    const data = {
+      id: id,
+      status: CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL,
+    };
+    setReviewOfferStatus(data);
+  };
   return (
     <>
       {offers.map(o => (
@@ -40,10 +55,19 @@ const OfferBoxReview = props => {
               <p className={styles.offerContent}>{o.text}</p>
             )}
           </div>
-
           <div className={styles.blockButton}>
-            <button className={styles.approvedBtn}>Approved</button>
-            <button className={styles.cancelBtn}>Cancel</button>
+            <button
+              className={styles.approvedBtn}
+              onClick={() => approvedOffer(o.id)}
+            >
+              Approved
+            </button>
+            <button
+              className={styles.cancelBtn}
+              onClick={() => cancelOffer(o.id)}
+            >
+              Cancel
+            </button>
           </div>
         </article>
       ))}
