@@ -67,4 +67,11 @@ router.get(
   contestController.getPendingOffers
 );
 
+router.patch(
+  '/setReviewOffers',
+  checkToken.checkToken,
+  basicMiddlewares.onlyForModerator,
+  contestController.setReviewOffers
+);
+
 module.exports = router;
