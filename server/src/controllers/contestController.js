@@ -78,10 +78,12 @@ module.exports.getContestById = async (req, res, next) => {
       ],
     });
     contestInfo = contestInfo.get({ plain: true });
-    const hasWinner = contestInfo.Offers.some(offer => offer.status === 'won');
+    const hasWinner = contestInfo.Offers.some(
+      offer => offer.status === CONSTANTS.OFFER_STATUS_WON
+    );
     if (!hasWinner && req.tokenData.role !== CONSTANTS.CREATOR) {
       contestInfo.Offers = contestInfo.Offers.filter(
-        offer => offer.status === 'approved'
+        offer => offer.status === CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED
       );
     }
     contestInfo.Offers.forEach(offer => {
@@ -325,7 +327,7 @@ module.exports.getPendingOffers = async (req, res, next) => {
   try {
     const offers = await db.Offers.findAll({
       where: {
-        status: 'pending',
+        status: CONSTANTS.OFFER_STATUS_PENDING,
       },
       include: [
         {
