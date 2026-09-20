@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styles from './ModeratorPage.module.sass';
-import { getPendingOffers } from '../../store/slices/contestByIdSlice';
+import {
+  getPendingOffers,
+  setReviewOfferStatus,
+} from '../../store/slices/contestByIdSlice';
 import withRouter from '../../hocs/withRouter';
 import CONSTANTS from '../../constants';
 import OfferBoxReview from '../../components/OfferBox/OfferBoxReview/OfferBoxReview';
@@ -10,6 +13,7 @@ const ModeratorPage = props => {
   const {
     contestByIdStore: { offers },
     getPendingOffers,
+    setReviewOfferStatus,
   } = props;
   useEffect(() => {
     getPendingOffers();
@@ -18,19 +22,32 @@ const ModeratorPage = props => {
   return (
     <main className={styles.moderatorWrapper}>
       <section className={styles.reviewOfferBox}>
-        <h2 className={styles.titleModerator}>
-          Offers to review: {offers.length}
-        </h2>
-        <button
-          onClick={() => props.getPendingOffers()}
-          className={styles.refreshButton}
-        >
-          Refresh
-        </button>
+        <div className={styles.reviewHeader}>
+          <h2 className={styles.titleModerator}>
+            Offers to review: {offers.length}
+          </h2>
+          <button
+            onClick={() => props.getPendingOffers()}
+            className={styles.refreshButton}
+          >
+            Refresh
+          </button>
+        </div>
         {props.userStore.data.role === CONSTANTS.MODERATOR ? (
-          <OfferBoxReview offers={offers} />
+          <>
+            {offers.length === 0 ? (
+              <p className={styles.messagePreview}>
+                You have no offers to review
+              </p>
+            ) : (
+              <OfferBoxReview
+                offers={offers}
+                setReviewOfferStatus={setReviewOfferStatus}
+              />
+            )}
+          </>
         ) : (
-          <p>You are not a moderator</p>
+          <p className={styles.messagePreview}>You are not a moderator</p>
         )}
       </section>
     </main>
@@ -44,6 +61,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getPendingOffers: () => dispatch(getPendingOffers()),
+  setReviewOfferStatus: data => dispatch(setReviewOfferStatus(data)),
 });
 
 export default connect(
