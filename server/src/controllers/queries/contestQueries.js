@@ -1,6 +1,7 @@
 const bd = require('../../models');
 const ServerError = require('../../errors/ServerError');
 const CONSTANTS = require('../../constants');
+const { sendMessage } = require('../../smtpConfig');
 
 module.exports.updateContest = async (data, predicate, transaction) => {
   const [updatedCount, [updatedContest]] = await bd.Contests.update(data, {
@@ -63,7 +64,7 @@ module.exports.createOffer = async data => {
   }
 };
 
-module.exports.updateReviewStatus = async (idOffer, reviewStatus) => {
+module.exports.updateReviewStatus = async (idOffer, reviewStatus, receiver) => {
   if (reviewStatus === CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED) {
     const [, result] = await bd.Offers.update(
       { status: reviewStatus },
@@ -74,6 +75,7 @@ module.exports.updateReviewStatus = async (idOffer, reviewStatus) => {
         returning: true,
       }
     );
+    sendMessage(receiver, CONSTANTS.APPROVED.SUBJECT, CONSTANTS.APPROVED.TEXT);
     return result;
   } else if (reviewStatus === CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL) {
     const [, result] = await bd.Offers.update(
@@ -85,6 +87,7 @@ module.exports.updateReviewStatus = async (idOffer, reviewStatus) => {
         returning: true,
       }
     );
+    sendMessage(receiver, CONSTANTS.CANCEL.SUBJECT, CONSTANTS.CANCEL.TEXT);
     return result;
   } else {
     return new ServerError();
