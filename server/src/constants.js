@@ -46,4 +46,12 @@ module.exports = {
     'displayName',
     'avatar',
   ],
+  APPROVED: {
+    SUBJECT: 'Your offer has been approved 🎉',
+    TEXT: 'Congratulations! Your offer has successfully passed our review and has been approved. Thank you for submitting it, and we look forward to moving forward together. Respectfully team SquadHelp',
+  },
+  CANCEL: {
+    SUBJECT: 'Update on your offer submission',
+    TEXT: 'Thank you for submitting your offer. After careful review, we regret to inform you that it does not meet our current guidelines and cannot be approved at this time. We encourage you to review our policy and consider submitting again in the future. Respectfully team SquadHelp',
+  },
 };
