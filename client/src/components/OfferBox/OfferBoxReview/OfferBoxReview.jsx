@@ -13,16 +13,20 @@ const OfferBoxReview = props => {
   const { offers, setReviewOfferStatus } = props;
 
   const approvedOffer = id => {
+    const offer = offers.find(offer => offer.id === id);
     const data = {
       id: id,
       status: CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED,
+      email: offer.User.email,
     };
     setReviewOfferStatus(data);
   };
   const cancelOffer = id => {
+    const offer = offers.find(offer => offer.id === id);
     const data = {
       id: id,
       status: CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL,
+      email: offer.User.email,
     };
     setReviewOfferStatus(data);
   };
