@@ -12,6 +12,15 @@
   @media(max-width: 450px)
     padding: 10px 0
 
+  &.pending
+    border: 2px solid orange
+
+  &.approved
+    border: 2px solid #28d2d0
+
+  &.cancel
+    border: 2px solid red
+
   i
     position: absolute
     left: calc(100% - 35px)
@@ -56,6 +65,9 @@
 
       &:hover
         background-color: rgba(205, 92, 92, 0.7)
+
+  .pending
+    border: 2px solid orange
 
   .mainInfoContainer
     align-self: stretch

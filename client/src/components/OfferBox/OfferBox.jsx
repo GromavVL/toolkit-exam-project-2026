@@ -108,8 +108,13 @@ const OfferBox = props => {
 
   const { data, role, id, contestType } = props;
   const { avatar, firstName, lastName, email, rating } = props.data.User;
+  const offerContainerReviewStatus = classNames(styles.offerContainer, {
+    [styles.pending]: props.data.status === 'pending',
+    [styles.approved]: props.data.status === 'approved',
+    [styles.cancel]: props.data.status === 'cancel',
+  });
   return (
-    <div className={styles.offerContainer}>
+    <div className={offerContainerReviewStatus}>
       {offerStatus()}
       <div className={styles.mainInfoContainer}>
         <div className={styles.userInfo}>
