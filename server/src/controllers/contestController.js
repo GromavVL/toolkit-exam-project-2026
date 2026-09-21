@@ -354,6 +354,10 @@ module.exports.getPendingOffers = async (req, res, next) => {
             'contestType',
           ],
         },
+        {
+          model: db.Users,
+          attributes: ['email'],
+        },
       ],
     });
     res.send(offers);
@@ -365,10 +369,12 @@ module.exports.getPendingOffers = async (req, res, next) => {
 module.exports.setReviewOffers = async (req, res, next) => {
   const idOffer = req.body.id;
   const reviewStatus = req.body.status;
+  const receiver = req.body.email;
   try {
     const offer = await contestQueries.updateReviewStatus(
       idOffer,
-      reviewStatus
+      reviewStatus,
+      receiver
     );
     res.send(offer);
   } catch (err) {
