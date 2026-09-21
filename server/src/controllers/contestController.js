@@ -57,7 +57,15 @@ module.exports.getContestById = async (req, res, next) => {
           where:
             req.tokenData.role === CONSTANTS.CREATOR
               ? { userId: req.tokenData.userId }
-              : {},
+              : {
+                  status: {
+                    [db.Sequelize.Op.in]: [
+                      CONSTANTS.OFFER_STATUS_WON,
+                      CONSTANTS.OFFER_STATUS_REJECTED,
+                      CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED,
+                    ],
+                  },
+                },
           attributes: { exclude: ['userId', 'contestId'] },
           include: [
             {
@@ -199,7 +207,12 @@ const resolveOffer = async (
     },
     {
       contestId,
-      status: CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED,
+      status: {
+        [db.Sequelize.Op.in]: [
+          CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED,
+          CONSTANTS.OFFER_STATUS_PENDING,
+        ],
+      },
     },
     transaction
   );
