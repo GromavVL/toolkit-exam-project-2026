@@ -1,31 +1,38 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 #################################
 ## Run application in DEV mode ##
 #################################
 
-
+COMPOSE="docker compose --file docker-compose-dev.yaml"
 started_at=$(date +"%s")
 
 echo "-----> Provisioning containers"
-docker compose --file docker-compose-dev.yaml up -d
+$COMPOSE up -d
 echo ""
 
-echo "-----> Database pending ..."
-sleep 5
+echo "-----> Waiting for database ..."
+for i in {1..60}; do
+  if $COMPOSE exec -T db-dev pg_isready -U postgres -d todo-dev >/dev/null 2>&1; then
+    echo "<----- Database is ready"
+    break
+  fi
+  [ "$i" -eq 60 ] && { echo "!!! Database did not become ready in 60s"; exit 1; }
+  sleep 1
+done
 
-# Run Sequalize's migrations.
+# Run Sequelize's migrations.
 echo "-----> Running application migrations"
-docker exec -it toolkit-exam-project-2026-server-dev-1 npx sequelize-cli db:migrate
+$COMPOSE exec -T server-dev npx sequelize-cli db:migrate
 echo ""
 
-# Run Sequalize's seeds.
+# Run Sequelize's seeds.
 echo "-----> Running application seeds"
-docker exec -it toolkit-exam-project-2026-server-dev-1 npx sequelize-cli db:seed:all
+$COMPOSE exec -T server-dev npx sequelize-cli db:seed:all
 echo "<----- Seeds created"
 
 ended_at=$(date +"%s")
-
 minutes=$(((ended_at - started_at) / 60))
 seconds=$(((ended_at - started_at) % 60))
 
