@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.sass';
@@ -7,37 +7,39 @@ import { clearUserStore } from '../../store/slices/userSlice';
 import { getUser } from '../../store/slices/userSlice';
 import withRouter from '../../hocs/withRouter';
 
-class Header extends React.Component {
-  componentDidMount () {
-    if (!this.props.data) {
-      this.props.getUser();
+const Header = props => {
+  const { data, isFetching, getUser, clearUserStore, navigate } = props;
+
+  useEffect(() => {
+    if (!data) {
+      getUser();
     }
-  }
+  }, []);
 
-  logOut = () => {
+  const logOut = () => {
     localStorage.clear();
-    this.props.clearUserStore();
-    this.props.navigate('/login', { replace: true });
+    clearUserStore();
+    navigate('/login', { replace: true });
   };
 
-  startContests = () => {
-    this.props.navigate('/startContest');
+  const startContests = () => {
+    navigate('/startContest');
   };
 
-  renderLoginButtons = () => {
-    if (this.props.data) {
+  const renderLoginButtons = () => {
+    if (data) {
       return (
         <>
           <div className={styles.userInfo}>
             <img
               src={
-                this.props.data.avatar === 'anon.png'
+                data.avatar === 'anon.png'
                   ? CONSTANTS.ANONYM_IMAGE_PATH
-                  : `${CONSTANTS.publicURL}${this.props.data.avatar}`
+                  : `${CONSTANTS.publicURL}${data.avatar}`
               }
               alt='user'
             />
-            <span>{`Hi, ${this.props.data.displayName}`}</span>
+            <span>{`Hi, ${data.displayName}`}</span>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
               alt='menu'
@@ -53,7 +55,7 @@ class Header extends React.Component {
                   <span>My Account</span>
                 </Link>
               </li>
-              {this.props.data && this.props.data.role === CONSTANTS.CUSTOMER && (
+              {data.role === CONSTANTS.CUSTOMER && (
                 <li>
                   <Link to='/events' style={{ textDecoration: 'none' }}>
                     <span>Events</span>
@@ -77,7 +79,7 @@ class Header extends React.Component {
                 </Link>
               </li>
               <li>
-                <span onClick={this.logOut}>Logout</span>
+                <span onClick={logOut}>Logout</span>
               </li>
             </ul>
           </div>
@@ -101,12 +103,12 @@ class Header extends React.Component {
     );
   };
 
-  render () {
-    if (this.props.isFetching) {
-      return null;
-    }
-    return (
-      <div className={styles.headerContainer}>
+  if (isFetching) {
+    return null;
+  }
+
+  return (
+    <div className={styles.headerContainer}>
         <div className={styles.fixedHeader}>
           <span className={styles.info}>
             Squadhelp recognized as one of the Most Innovative Companies by Inc
@@ -120,7 +122,7 @@ class Header extends React.Component {
             <span>(877)&nbsp;355-3585</span>
           </div>
           <div className={styles.userButtonsContainer}>
-            {this.renderLoginButtons()}
+            {renderLoginButtons()}
           </div>
         </div>
         <div className={styles.navContainer}>
@@ -274,25 +276,24 @@ class Header extends React.Component {
                 </li>
               </ul>
             </div>
-            {this.props.data && this.props.data.role === CONSTANTS.CUSTOMER && (
+            {data && data.role === CONSTANTS.CUSTOMER && (
               <div
                 className={styles.startContestBtn}
-                onClick={this.startContests}
+                onClick={startContests}
               >
                 START CONTEST
               </div>
             )}
-            {this.props.data && this.props.data.role === CONSTANTS.MODERATOR && (
+            {data && data.role === CONSTANTS.MODERATOR && (
               <Link to='/moderatorPage' className={styles.startContestBtn}>
                 REVIEW OFFER
               </Link>
             )}
           </div>
         </div>
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const mapStateToProps = state => state.userStore;
 const mapDispatchToProps = dispatch => ({
