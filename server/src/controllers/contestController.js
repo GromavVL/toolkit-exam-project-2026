@@ -345,6 +345,7 @@ module.exports.getPendingOffers = async (req, res, next) => {
       include: [
         {
           model: db.Contests,
+          required: true,
           attributes: [
             'title',
             'industry',

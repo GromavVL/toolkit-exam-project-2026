@@ -40,6 +40,7 @@ class ContestPage extends React.Component {
   };
 
   setOffersList = () => {
+    if (!this.props.contestByIdStore.contestData) return null;
     const array = [];
     for (let i = 0; i < this.props.contestByIdStore.offers.length; i++) {
       array.push(
@@ -134,6 +135,14 @@ class ContestPage extends React.Component {
       offers,
       setOfferStatusError,
     } = contestByIdStore;
+
+    if (!isFetching && !contestData) {
+      return (
+        <div className={styles.tryContainer}>
+          <TryAgain getData={getData} />
+        </div>
+      );
+    }
     return (
       <div>
         {isShowOnFull && (

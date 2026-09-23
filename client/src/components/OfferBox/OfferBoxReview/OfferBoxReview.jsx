@@ -32,7 +32,7 @@ const OfferBoxReview = props => {
   };
   return (
     <>
-      {offers.map(o => (
+      {offers.filter(o => o.Contest && o.User).map(o => (
         <article key={o.id} className={styles.reviewBlock}>
           <h3 className={styles.reviewTitle}>Contest info</h3>
           <div className={styles.offerCard}>
