@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.sass';
@@ -6,10 +6,15 @@ import CONSTANTS from '../../constants';
 import { clearUserStore } from '../../store/slices/userSlice';
 import { getUser } from '../../store/slices/userSlice';
 import withRouter from '../../hocs/withRouter';
+import MessageBadge from '../../components/MessageBadge/MessageBadge';
 
 const Header = props => {
   const { data, isFetching, getUser, clearUserStore, navigate } = props;
-
+  const [events, setEvents] = useState(() => {
+    const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [buttonSwitch, setButtonSwitch] = useState(false);
   useEffect(() => {
     if (!data) {
       getUser();
@@ -117,6 +122,18 @@ const Header = props => {
           Magazine.
         </span>
         <a href='http://www.google.com'>Read Announcement</a>
+        {!buttonSwitch && (
+          <div className={styles.badgeBlock}>
+            {props.location.pathname !== '/events' && (
+              <MessageBadge
+                events={events}
+                setEvents={setEvents}
+                buttonSwitch={buttonSwitch}
+                setButtonSwitch={setButtonSwitch}
+              />
+            )}
+          </div>
+        )}
       </div>
       <div className={styles.loginSignnUpHeaders}>
         <div className={styles.numberContainer}>
