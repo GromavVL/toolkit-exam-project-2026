@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './OfferBoxReview.module.sass';
 import CONSTANTS from '../../../constants';
 

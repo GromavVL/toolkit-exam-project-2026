@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './EventTimer.module.sass';
 import useCountdown from './../../hocs/timerLeft';
 import { IoTrashOutline } from 'react-icons/io5';

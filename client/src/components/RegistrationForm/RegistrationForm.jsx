@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 import Error from '../Error/Error';

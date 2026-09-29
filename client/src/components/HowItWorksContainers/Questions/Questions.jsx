@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Questions.module.sass';
 import CONSTANTS from './../../../constants';
 
