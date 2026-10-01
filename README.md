@@ -119,13 +119,13 @@ Test bank card details for verifying payments:
 | Field           | Value                 |
 |-----------------|-----------------------|
 | Card number     | 4111 1111 1111 1111   |
-| Expiry date     | 09/26                 |
+| Expiry date     | 09/27                 |
 | CVC/CVV         | 505                   |
 
-**Withdrawing funds to the creator's card:**
+**Withdrawing funds to the SquadHelp card:**
 
 | Field           | Value                 |
 |-----------------|-----------------------|
-| Card number     | 5105 1051 0510 5100   |
-| Expiry date     | 09/26                 |
-| CVC/CVV         | 510                   |
+| Card number     | 4564 6545 6456 4564   |
+| Expiry date     | 11/27                 |
+| CVC/CVV         | 453                   |
