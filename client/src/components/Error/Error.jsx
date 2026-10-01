@@ -14,6 +14,8 @@ const Error = props => {
         return 'Bank decline transaction';
       case 406:
         return data;
+      case 417:
+        return 'Not enough money'
       default:
         return 'Server Error';
     }
