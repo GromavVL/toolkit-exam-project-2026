@@ -81,6 +81,18 @@ module.exports.addMessage = async (req, res, next) => {
   const [user1Id, user2Id] = participants;
   let transaction;
   try {
+    const recipientUser = await userQueries.findUser({
+      id: req.body.recipient,
+    });
+    const recipient = {
+      id: recipientUser.id,
+      firstName: recipientUser.firstName,
+      lastName: recipientUser.lastName,
+      displayName: recipientUser.displayName,
+      avatar: recipientUser.avatar,
+      email: recipientUser.email,
+    };
+
     transaction = await db.sequelize.transaction();
     const [conversation] = await db.Conversations.findOrCreate({
       where: { user1Id, user2Id },
@@ -120,7 +132,7 @@ module.exports.addMessage = async (req, res, next) => {
     });
     res.send({
       message,
-      preview: Object.assign({}, preview, { interlocutor }),
+      preview: Object.assign({}, preview, { interlocutor: recipient }),
     });
   } catch (err) {
     next(err);
