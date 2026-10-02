@@ -3,9 +3,9 @@ import http from '../interceptor';
 export const registerRequest = data => http.post('registration', data);
 export const loginRequest = data => http.post('login', data);
 export const getUser = () => http.get('getUser');
-export const updateContest = data => http.post('updateContest', data);
+export const updateContest = data => http.patch('updateContest', data);
 export const setNewOffer = data => http.post('setNewOffer', data);
-export const setOfferStatus = data => http.post('setOfferStatus', data);
+export const setOfferStatus = data => http.patch('setOfferStatus', data);
 export const downloadContestFile = data =>
   http.get(`downloadFile/${data.fileName}`);
 export const payMent = data => http.post('pay', data.formData);
@@ -27,15 +27,13 @@ export const removeChatFromCatalog = ({ catalogId, chatId }) =>
   http.delete(`removeChatFromCatalog/${catalogId}/${chatId}`);
 export const changeCatalogName = data => http.patch('updateNameCatalog', data);
 export const getCustomersContests = data =>
-  http.post(
-    'getCustomersContests',
-    { limit: data.limit, offset: data.offset },
-    {
-      headers: {
-        status: data.contestStatus,
-      },
-    }
-  );
+  http.get('getCustomersContests', {
+    params: {
+      limit: data.limit,
+      offset: data.offset,
+      status: data.contestStatus,
+    },
+  });
 
 export const getActiveContests = ({
   offset,
@@ -46,22 +44,20 @@ export const getActiveContests = ({
   awardSort,
   ownEntries,
 }) =>
-  http.post('getAllContests', {
-    offset,
-    limit,
-    typeIndex,
-    contestId,
-    industry,
-    awardSort,
-    ownEntries,
-  });
-
-export const getContestById = data =>
-  http.get('getContestById', {
-    headers: {
-      contestId: data.contestId,
+  http.get('getAllContests', {
+    params: {
+      offset,
+      limit,
+      typeIndex,
+      contestId,
+      industry,
+      awardSort,
+      ownEntries,
     },
   });
+
+export const getContestById = ({ contestId }) =>
+  http.get(`getContestById/${contestId}`);
 
 export const getPendingOffers = () => http.get('getAllPendingOffers');
 export const setReviewOfferStatus = data => http.patch('setReviewOffers', data);

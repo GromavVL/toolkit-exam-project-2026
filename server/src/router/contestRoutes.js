@@ -12,20 +12,20 @@ router.post(
   contestController.dataForContest
 );
 
-router.post(
+router.get(
   '/getCustomersContests',
   checkToken.checkToken,
   contestController.getCustomersContests
 );
 
 router.get(
-  '/getContestById',
+  '/getContestById/:contestId',
   checkToken.checkToken,
   basicMiddlewares.canGetContest,
   contestController.getContestById
 );
 
-router.post(
+router.get(
   '/getAllContests',
   checkToken.checkToken,
   basicMiddlewares.onlyForCreative,
@@ -38,7 +38,7 @@ router.get(
   contestController.downloadFile
 );
 
-router.post(
+router.patch(
   '/updateContest',
   checkToken.checkToken,
   upload.updateContestFile,
@@ -53,7 +53,7 @@ router.post(
   contestController.setNewOffer
 );
 
-router.post(
+router.patch(
   '/setOfferStatus',
   checkToken.checkToken,
   basicMiddlewares.onlyForCustomerWhoCreateContest,
