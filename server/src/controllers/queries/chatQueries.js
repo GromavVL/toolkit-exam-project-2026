@@ -1,6 +1,5 @@
 const bd = require('../../models');
 const CONSTANT = require('../../constants');
-const { Op } = require('sequelize');
 
 module.exports.conversationsPreview = async userId => {
   const conversations = await bd.Conversations.findAll({
