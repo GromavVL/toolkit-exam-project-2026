@@ -50,6 +50,10 @@ npm start
 - Refactor the user update function to prevent callers from corrupting the balance
 - Fixed styles in some components
 - All libraries updated
+- The 'UncorrectPassword.js' error file was used in the "passwordCompare" database request
+- Add error 'NotEnoughMoney' to controller cashout
+- Fix all routes to use correct HTTP methods
+- Eliminate code duplication
 
 ### Layout
 
@@ -62,6 +66,7 @@ npm start
 - Added an `Event` link to the Event page in the user menu
 - A page has been developed that matches the style of the entire application.
 - Implemented an info badge the icon next to the "Live upcoming checks" section now clearly displays the number of upcoming events
+- Added a red badge to all pages except the event
 
 ### Button group
 
