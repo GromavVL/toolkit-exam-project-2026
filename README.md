@@ -50,6 +50,10 @@ npm start
 - Refactor the user update function to prevent callers from corrupting the balance
 - Fixed styles in some components
 - All libraries updated
+- The 'UncorrectPassword.js' error file was used in the "passwordCompare" database request
+- Add error 'NotEnoughMoney' to controller cashout
+- Fix all routes to use correct HTTP methods
+- Eliminate code duplication
 
 ### Layout
 
@@ -62,6 +66,7 @@ npm start
 - Added an `Event` link to the Event page in the user menu
 - A page has been developed that matches the style of the entire application.
 - Implemented an info badge the icon next to the "Live upcoming checks" section now clearly displays the number of upcoming events
+- Added a red badge to all pages except the event
 
 ### Button group
 
@@ -119,13 +124,13 @@ Test bank card details for verifying payments:
 | Field           | Value                 |
 |-----------------|-----------------------|
 | Card number     | 4111 1111 1111 1111   |
-| Expiry date     | 09/26                 |
+| Expiry date     | 09/27                 |
 | CVC/CVV         | 505                   |
 
-**Withdrawing funds to the creator's card:**
+**Withdrawing funds to the SquadHelp card:**
 
 | Field           | Value                 |
 |-----------------|-----------------------|
-| Card number     | 5105 1051 0510 5100   |
-| Expiry date     | 09/26                 |
-| CVC/CVV         | 510                   |
+| Card number     | 4564 6545 6456 4564   |
+| Expiry date     | 11/27                 |
+| CVC/CVV         | 453                   |

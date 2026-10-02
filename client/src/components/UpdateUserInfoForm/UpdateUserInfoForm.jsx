@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Formik } from 'formik';
 import { connect } from 'react-redux';
 import { clearUserError } from '../../store/slices/userSlice';

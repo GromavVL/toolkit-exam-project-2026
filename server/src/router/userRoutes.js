@@ -8,7 +8,7 @@ const upload = require('../utils/fileUpload');
 
 const router = express.Router();
 
-router.post('/getUser', checkToken.checkAuth);
+router.get('/getUser', checkToken.checkAuth);
 router.post('/login', validators.validateLogin, userController.login);
 
 router.post(
@@ -28,21 +28,21 @@ router.post(
   userController.payment
 );
 
-router.post(
+router.patch(
   '/updateUser',
   checkToken.checkToken,
   upload.uploadAvatar,
   userController.updateUser
 );
 
-router.post(
+router.patch(
   '/cashout',
   checkToken.checkToken,
   basicMiddlewares.onlyForCreative,
   userController.cashout
 );
 
-router.post(
+router.patch(
   '/changeMark',
   checkToken.checkToken,
   basicMiddlewares.onlyForCustomer,

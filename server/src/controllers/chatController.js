@@ -43,11 +43,11 @@ module.exports.getChat = async (req, res, next) => {
   try {
     const [user1Id, user2Id] = participantsSorting(
       req.tokenData.userId,
-      req.body.interlocutorId
+      req.params.id
     );
     const messages = await chatQueries.getMessageChat(user1Id, user2Id);
     const interlocutor = await userQueries.findUser({
-      id: req.body.interlocutorId,
+      id: req.params.id,
     });
 
     res.send({
@@ -81,6 +81,18 @@ module.exports.addMessage = async (req, res, next) => {
   const [user1Id, user2Id] = participants;
   let transaction;
   try {
+    const recipientUser = await userQueries.findUser({
+      id: req.body.recipient,
+    });
+    const recipient = {
+      id: recipientUser.id,
+      firstName: recipientUser.firstName,
+      lastName: recipientUser.lastName,
+      displayName: recipientUser.displayName,
+      avatar: recipientUser.avatar,
+      email: recipientUser.email,
+    };
+
     transaction = await db.sequelize.transaction();
     const [conversation] = await db.Conversations.findOrCreate({
       where: { user1Id, user2Id },
@@ -120,7 +132,7 @@ module.exports.addMessage = async (req, res, next) => {
     });
     res.send({
       message,
-      preview: Object.assign({}, preview, { interlocutor }),
+      preview: Object.assign({}, preview, { interlocutor: recipient }),
     });
   } catch (err) {
     next(err);
@@ -310,8 +322,8 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
 };
 
 module.exports.removeChatFromCatalog = async (req, res, next) => {
-  const catalogsId = req.body.catalogId;
-  const chatId = req.body.chatId;
+  const catalogsId = req.params.catalogId;
+  const chatId = req.params.chatId;
   const userId = req.tokenData.userId;
   try {
     const findCatalog = await db.Catalogs.findOne({
@@ -348,7 +360,7 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
 };
 
 module.exports.deleteCatalog = async (req, res, next) => {
-  const catalogId = req.body.catalogId;
+  const catalogId = req.params.catalogId;
   const user = req.tokenData.userId;
   try {
     await db.Catalogs.destroy({
