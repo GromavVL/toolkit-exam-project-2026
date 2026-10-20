@@ -9,13 +9,17 @@
   flex-direction: row
   justify-content: space-between
   align-items: center
-  min-width: 300px
-  width: 1200px
+  width: 1015px
   margin-top: 26px
   padding-left: 45px
   padding-right: 100px
+  @media (max-width: 1175px)
+    width: 700px
+  @media (max-width: 850px)
+    width: 386px
   @media (max-width: 530px)
     padding-right: 45px
+    width: 265px
 
 .linkAuthContainer
   border: 1px solid white
