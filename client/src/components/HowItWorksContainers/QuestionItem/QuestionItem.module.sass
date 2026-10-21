@@ -1,0 +1,73 @@
+@mixin icons()
+  font-weight: 400
+  display: inline-block
+  font-size: 27px
+  animation: iconIn .35s ease
+
+.questionItem
+  cursor: pointer
+  border-radius: 16px
+  border: 1px solid #f3f5fe
+  width: 100%
+  padding: 28px 24px
+  box-sizing: border-box
+  transition: background-color .3s ease, border-color .3s ease
+  interpolate-size: allow-keywords
+
+  &:hover
+    background-color: rgba(48, 125, 246, .1)
+    border-color: rgb(10, 104, 255)
+
+  &[open]
+    background-color: #307DF6
+    border-color: #307DF6
+
+  &::details-content
+    height: 0
+    overflow: hidden
+    transition: height .35s ease, content-visibility .35s allow-discrete
+
+  &[open]::details-content
+    height: auto
+
+  @media (max-width: 480px)
+    padding: 18px 16px
+
+.questionSummary
+  font-size: 19px
+  color: #19184A
+  font-weight: 700
+  list-style: none
+  outline: none
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: 16px
+  transition: color .3s ease
+
+  &::-webkit-details-marker
+    display: none
+
+  .questionItem[open] &
+    color: #fff
+
+.questionAnswer
+  width: 100%
+  margin-top: 24px
+  color: #4a4a68
+  line-height: 1.5
+  transition: color .3s ease
+
+  .questionItem[open] &
+    color: #fff
+    animation: answerIn .35s ease
+
+.icons
+  color: #377dff
+  flex-shrink: 0
+  @include icons()
+
+.iconsClose
+  color: #fff
+  flex-shrink: 0
+  @include icons()
