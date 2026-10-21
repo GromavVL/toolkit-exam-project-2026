@@ -32,59 +32,6 @@
         max-width: 100%
         padding: 0 16px
 
-.questionItem
-    cursor: pointer
-    border-radius: 16px
-    border: 1px solid #f3f5fe
-    width: 100%
-    padding: 28px 24px
-    transition: background-color .2s ease, border-color .2s ease
-    box-sizing: border-box
-
-    &:hover
-        background-color: rgba(48, 125, 246, .1)
-        border-color: rgb(10, 104, 255)
-
-    &[open]
-        background-color: #307DF6
-        border-color: #307DF6
-
-    @media (max-width: 480px)
-        padding: 18px 16px
-
-
-.questionSummary
-  font-size: 19px
-  color: #19184A
-  font-weight: 700
-  list-style: none
-  outline: none
-  display: flex
-  justify-content: space-between
-  align-items: center
-
-  .questionItem[open] &
-        color: #fff
-
-.questionAnswer
-  width: 100%
-  margin-top: 24px
-  color: #4a4a68
-  line-height: 1.5
-
-  .questionItem[open] &
-        color: #fff
-
-.icons
-  color: #377dff
-  font-weight: 400
-  display: inline-block
-  transition: transform .2s ease, color .2s ease
-
-  .questionItem[open] &
-    color: #fff
-    transform: rotate(45deg)
-
 .nav
   display: flex
   align-items: center

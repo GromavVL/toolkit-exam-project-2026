@@ -3,7 +3,7 @@ import CONSTANTS from '../../constants';
 import { IoSearchOutline } from 'react-icons/io5';
 import OptionCards from '../../components/HowItWorksContainers/OptionCards/OptionCards';
 import StepCards from '../../components/HowItWorksContainers/StepCards/StepCards';
-import Questions from '../../components/HowItWorksContainers/Questions/Questions';
+import QuestionsContainer from '../../components/HowItWorksContainers/QuestionsContainer/QuestionsContainer';
 
 function HowItWorks () {
   const basePath = `${CONSTANTS.STATIC_IMAGES_PATH}howItWork/`;
@@ -62,7 +62,7 @@ function HowItWorks () {
 
       <section className={styles.questionsBlock}>
         <h2 className={styles.questionsTitle}>Frequently Asked Questions</h2>
-        <Questions />
+        <QuestionsContainer />
       </section>
 
       <section className={styles.searchBlock}>
