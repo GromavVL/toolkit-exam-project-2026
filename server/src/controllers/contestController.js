@@ -283,7 +283,7 @@ module.exports.getCustomersContests = (req, res, next) => {
       {
         model: db.Offers,
         required: false,
-        attributes: ['id'],
+        attributes: ['id', 'status'],
       },
     ],
   })
@@ -320,7 +320,7 @@ module.exports.getContests = (req, res, next) => {
           req.query.ownEntries === 'true'
             ? { userId: req.tokenData.userId }
             : {},
-        attributes: ['id'],
+        attributes: ['id', 'status'],
       },
     ],
   })
