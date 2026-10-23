@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 const CONSTANT = require('../constants');
 
 const buildFileName = () => {
@@ -6,9 +6,10 @@ const buildFileName = () => {
     .toLocaleString('sv-SE', {
       timeZone: CONSTANT.TIMEZONE,
     })
-    .slice(0, 10);
+    .slice(0, 16)
+    .replaceAll(' ', '-');
 
-  return `${timestamp}${CONSTANT.LOG_ARCHIVE_SUFFIX}`;
+  return `${timestamp}.ndjson`;
 };
 
 const transformLine = line => {
