@@ -1,8 +1,13 @@
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 import styles from './ContestBox.module.sass';
 import CONSTANTS from '../../constants';
+import { IoTimeOutline } from 'react-icons/io5';
+import { IoCheckmark } from 'react-icons/io5';
 
 const ContestBox = props => {
+  const { role } = useSelector(state => state.userStore.data);
+
   const getTimeStr = () => {
     const diff = moment.duration(moment().diff(moment(props.data.createdAt)));
     let str = '';
@@ -22,7 +27,14 @@ const ContestBox = props => {
   const ucFirstLetter = string =>
     string.charAt(0).toUpperCase() + string.slice(1);
 
-  const { id, title, contestType, prize, count, goToExtended } = props.data;
+  const { id, title, contestType, prize, count, goToExtended, Offers } =
+    props.data;
+
+  const sumStatus = status => {
+    const sum = Offers.filter(o => o.status === status).length;
+    return sum;
+  };
+  
   return (
     <div
       className={styles.contestBoxContainer}
@@ -65,14 +77,29 @@ const ContestBox = props => {
       </div>
       <div className={styles.entryAndTimeContainer}>
         <div className={styles.entriesContainer}>
-          <div className={styles.entriesCounter}>
-            <img
-              src={`${CONSTANTS.STATIC_IMAGES_PATH}entrieImage.png`}
-              alt='logo'
-            />
-            <span>{count}</span>
-          </div>
-          <span>Entries</span>
+          {role === CONSTANTS.CREATOR && (
+            <div className={styles.infoStatusBlok}>
+              <img
+                src={`${CONSTANTS.STATIC_IMAGES_PATH}entrieImage.png`}
+                alt='logo'
+              />
+              <span>{count}</span>
+            </div>
+          )}
+          {role === CONSTANTS.CUSTOMER && (
+            <>
+              <div className={styles.infoStatusBlok}>
+                <IoCheckmark className={styles.approveIconCounter} />
+                <span>
+                  {sumStatus(CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED)}
+                </span>
+              </div>
+              <div className={styles.infoStatusBlok}>
+                <IoTimeOutline className={styles.pendingIconCounter} />
+                <span>{sumStatus(CONSTANTS.OFFER_STATUS_PENDING)}</span>
+              </div>
+            </>
+          )}
         </div>
         <div className={styles.timeContainer}>
           <span className={styles.timeContest}>{getTimeStr()}</span>
