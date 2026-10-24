@@ -345,6 +345,8 @@ module.exports.getPendingOffers = async (req, res, next) => {
       where: {
         status: CONSTANTS.OFFER_STATUS_PENDING,
       },
+      limit: req.query.limit,
+      offset: req.query.offset,
       include: [
         {
           model: db.Contests,
