@@ -49,6 +49,7 @@ export default {
     'a Product',
     'a Startup',
   ],
+  LIMIT: 8,
   FOOTER_ITEMS: [
     {
       title: 'SQUADHELP',
@@ -293,4 +294,5 @@ export default {
       body: 'I am only looking for a name, not a Domain',
     },
   ],
+
 };
