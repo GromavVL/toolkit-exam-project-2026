@@ -96,3 +96,20 @@ module.exports.updateNameCatalog = async (userId, id, Name) => {
   );
   return updatedCatalog;
 };
+
+module.exports.findAllCatalogs = async userId => {
+  const catalog = await bd.Catalogs.findAll({
+    where: { userId },
+    attributes: ['id', 'catalogName'],
+    include: [
+      {
+        model: bd.CatalogChats,
+        attributes: ['conversationId'],
+        required: false,
+      },
+    ],
+    order: [['id', 'ASC']],
+  });
+
+  return catalog;
+};
