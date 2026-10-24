@@ -126,8 +126,8 @@ const changeMarkExtraReducers = createExtraReducers({
 
 export const getPendingOffers = decorateAsyncThunk({
   key: `${CONTEST_BY_ID_SLICE_NAME}/getPendingOffers`,
-  thunk: async () => {
-    const { data } = await restController.getPendingOffers();
+  thunk: async payload => {
+    const { data } = await restController.getPendingOffers(payload);
     return data;
   },
 });
