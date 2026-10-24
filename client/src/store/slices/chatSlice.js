@@ -298,6 +298,7 @@ const changeCatalogNameExtraReducers = createExtraReducers({
 });
 
 const reducers = {
+  clearChatStore: () => initialState,
   changeBlockStatusInStore: (state, { payload }) => {
     const { messagesPreview } = state;
     messagesPreview.forEach(preview => {
@@ -412,6 +413,7 @@ export const {
   changeShowAddChatToCatalogMenu,
   changeRenameCatalogMode,
   clearChatError,
+  clearChatStore
 } = actions;
 
 export default reducer;
