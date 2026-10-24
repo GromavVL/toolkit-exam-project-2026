@@ -3,8 +3,7 @@ const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
 const chatQueries = require('./queries/chatQueries');
 const { participantsSorting } = require('../utils/functions');
-const RightsError = require('../errors/RightsError');
-const BadRequestError = require('../errors/BadRequestError');
+const { updateChatFlag } = require('../utils/helper');
 
 module.exports.getPreview = async (req, res, next) => {
   try {
@@ -140,64 +139,32 @@ module.exports.addMessage = async (req, res, next) => {
 };
 
 module.exports.favoriteChat = async (req, res, next) => {
-  const participant = req.body.participants;
-  const favorite = req.body.favoriteFlag;
   try {
-    const [user1Id, user2Id] = participantsSorting(...participant);
-    if (req.tokenData.userId !== user1Id && req.tokenData.userId !== user2Id) {
-      return next(new RightsError());
-    }
-    const field =
-      req.tokenData.userId === user1Id ? 'favoriteList1' : 'favoriteList2';
-    const favoriteQuery = await chatQueries.updateFavoriteFlag(
-      user1Id,
-      user2Id,
-      field,
-      favorite
-    );
-    if (!favoriteQuery) {
-      return next(new BadRequestError('Conversation not found'));
-    }
-
-    res.send({
-      _id: favoriteQuery.id,
-      participants: [favoriteQuery.user1Id, favoriteQuery.user2Id],
-      blackList: [favoriteQuery.blackList1, favoriteQuery.blackList2],
-      favoriteList: [favoriteQuery.favoriteList1, favoriteQuery.favoriteList2],
+    const chat = await updateChatFlag({
+      userId: req.tokenData.userId,
+      participants: req.body.participants,
+      value: req.body.favoriteFlag,
+      fields: ['favoriteList1', 'favoriteList2'],
+      update: chatQueries.updateFavoriteFlag,
     });
+    res.send(chat);
   } catch (err) {
     next(err);
   }
 };
 
 module.exports.blackList = async (req, res, next) => {
-  const participant = req.body.participants;
-  const blackList = req.body.blackListFlag;
   try {
-    const [user1Id, user2Id] = participantsSorting(...participant);
-    if (req.tokenData.userId !== user1Id && req.tokenData.userId !== user2Id) {
-      return next(new RightsError());
-    }
-    const field =
-      req.tokenData.userId === user1Id ? 'blackList1' : 'blackList2';
-    const blockQuery = await chatQueries.updateBlockFlag(
-      user1Id,
-      user2Id,
-      field,
-      blackList
-    );
-
-    if (!blockQuery) {
-      return next(new BadRequestError('Conversation not found'));
-    }
-    const chat = {
-      _id: blockQuery.id,
-      participants: [blockQuery.user1Id, blockQuery.user2Id],
-      blackList: [blockQuery.blackList1, blockQuery.blackList2],
-      favoriteList: [blockQuery.favoriteList1, blockQuery.favoriteList2],
-    };
-    res.send(chat);
+    const chat = await updateChatFlag({
+      userId: req.tokenData.userId,
+      participants: req.body.participants,
+      value: req.body.blackListFlag,
+      fields: ['blackList1', 'blackList2'],
+      update: chatQueries.updateBlockFlag,
+    });
+    const [user1Id, user2Id] = chat.participants;
     const interlocutorId = req.tokenData.userId === user1Id ? user2Id : user1Id;
+    res.send(chat);
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
   } catch (err) {
     next(err);
@@ -207,18 +174,7 @@ module.exports.blackList = async (req, res, next) => {
 module.exports.getCatalogs = async (req, res, next) => {
   const userId = req.tokenData.userId;
   try {
-    const catalogs = await db.Catalogs.findAll({
-      where: { userId },
-      attributes: ['id', 'catalogName'],
-      include: [
-        {
-          model: db.CatalogChats,
-          attributes: ['conversationId'],
-          required: false,
-        },
-      ],
-      order: [['id', 'ASC']],
-    });
+    const catalogs = await chatQueries.findAllCatalogs(userId);
     res.send(
       catalogs.map(catalog => ({
         _id: catalog.id,
