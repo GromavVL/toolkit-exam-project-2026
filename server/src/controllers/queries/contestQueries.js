@@ -86,3 +86,32 @@ module.exports.updateReviewStatus = async (idOffer, reviewStatus, receiver) => {
   sendMessage(receiver, notification.SUBJECT, notification.TEXT);
   return result;
 };
+
+module.exports.findAllPendingOffers = async (limit, offset) => {
+  const getOffers = await bd.Offers.findAll({
+    where: {
+      status: CONSTANTS.OFFER_STATUS_PENDING,
+    },
+    limit,
+    offset,
+    include: [
+      {
+        model: bd.Contests,
+        attributes: [
+          'title',
+          'industry',
+          'contestType',
+          'fileName',
+          'styleName',
+          'contestType',
+        ],
+      },
+      {
+        model: bd.Users,
+        attributes: ['email'],
+      },
+    ],
+  });
+
+  return getOffers;
+};
