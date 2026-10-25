@@ -20,16 +20,7 @@ module.exports.getPreview = async (req, res, next) => {
             ? convers.user2
             : convers.user1;
 
-        return {
-          _id: convers.id,
-          sender: lastMessage.senderId,
-          text: lastMessage.body,
-          createAt: lastMessage.createdAt,
-          participants: [convers.user1Id, convers.user2Id],
-          blackList: [convers.blackList1, convers.blackList2],
-          favoriteList: [convers.favoriteList1, convers.favoriteList2],
-          interlocutor: interlocutor.get(),
-        };
+        return mapper.chatPreviewToResponse(convers, lastMessage, interlocutor);
       })
       .sort((a, b) => b.createAt - a.createAt);
 
@@ -115,25 +106,21 @@ module.exports.addMessage = async (req, res, next) => {
       createdAt: createdMessage.createdAt,
       participants,
     };
-    const preview = {
-      _id: conversation.id,
-      sender: req.tokenData.userId,
-      text: createdMessage.body,
-      createAt: createdMessage.createdAt,
-      participants,
-      blackList: [conversation.blackList1, conversation.blackList2],
-      favoriteList: [conversation.favoriteList1, conversation.favoriteList2],
-    };
-
     controller.getChatController().emitNewMessage(req.body.recipient, {
       message,
-      preview: Object.assign({}, preview, {
-        interlocutor,
-      }),
+      preview: mapper.chatPreviewToResponse(
+        conversation,
+        createdMessage,
+        interlocutor
+      ),
     });
     res.send({
       message,
-      preview: Object.assign({}, preview, { interlocutor: recipient }),
+      preview: mapper.chatPreviewToResponse(
+        conversation,
+        createdMessage,
+        recipient
+      ),
     });
   } catch (err) {
     next(err);
