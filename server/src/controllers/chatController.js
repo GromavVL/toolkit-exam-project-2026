@@ -248,18 +248,17 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
     if (!findCatalog) {
       return res.send({ message: 'Catalog not found' });
     }
-
-    const existingChat = await db.CatalogChats.findOne({
-      where: { catalogId: catalogsId, conversationId: chatId },
-    });
+    const existingChat = await chatQueries.findChatInCatalog(
+      catalogsId,
+      chatId
+    );
     if (existingChat) {
       return res.send({ message: 'This chat added to catalog' });
     }
-
-    const chat = await db.CatalogChats.create({
-      catalogId: catalogsId,
-      conversationId: chatId,
-    });
+    const chat = await chatQueries.createChatInCatalog(
+      catalogsId,
+      chatId
+    );
     res.send(chat);
   } catch (err) {
     next(err);
@@ -286,7 +285,7 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
       attributes: ['conversationId'],
     });
     res.send({
-      _id: catalogsId,
+      _id: Number(catalogsId),
       catalogName: findCatalog.catalogName,
       chats: remainingChatsRaw.map(({ conversationId }) => conversationId),
     });

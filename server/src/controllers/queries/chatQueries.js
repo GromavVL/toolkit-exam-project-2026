@@ -143,3 +143,18 @@ module.exports.destroyCatalog = async (catalogId, user) => {
     },
   });
 };
+
+module.exports.findChatInCatalog = async (catalogId, conversationId) => {
+  return bd.CatalogChats.findOne({
+    where: { catalogId, conversationId },
+  });
+};
+
+module.exports.createChatInCatalog = async (catalogId, conversationId) => {
+  const chat = await bd.CatalogChats.create({
+    catalogId,
+    conversationId,
+  });
+
+  return chat;
+};
