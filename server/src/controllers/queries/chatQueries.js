@@ -113,3 +113,12 @@ module.exports.findAllCatalogs = async userId => {
 
   return catalog;
 };
+
+module.exports.destroyCatalog = async (catalogId, user) => {
+  return await bd.Catalogs.destroy({
+    where: {
+      id: catalogId,
+      userId: user,
+    },
+  });
+};

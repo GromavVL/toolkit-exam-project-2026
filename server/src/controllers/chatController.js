@@ -319,12 +319,7 @@ module.exports.deleteCatalog = async (req, res, next) => {
   const catalogId = req.params.catalogId;
   const user = req.tokenData.userId;
   try {
-    await db.Catalogs.destroy({
-      where: {
-        id: catalogId,
-        userId: user,
-      },
-    });
+    await chatQueries.destroyCatalog(catalogId, user);
 
     res.end();
   } catch (err) {
