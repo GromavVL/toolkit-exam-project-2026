@@ -4,6 +4,7 @@ const controller = require('../socketInit');
 const chatQueries = require('./queries/chatQueries');
 const { participantsSorting } = require('../utils/functions');
 const { updateChatFlag } = require('../utils/helper');
+const mapper = require('../utils/mapper');
 
 module.exports.getPreview = async (req, res, next) => {
   try {
@@ -93,17 +94,18 @@ module.exports.addMessage = async (req, res, next) => {
     };
 
     transaction = await db.sequelize.transaction();
-    const [conversation] = await db.Conversations.findOrCreate({
-      where: { user1Id, user2Id },
-      transaction,
-    });
-    const createdMessage = await db.Messages.create(
+    const conversation = await chatQueries.findOrCreateConversation(
+      user1Id,
+      user2Id,
+      transaction
+    );
+    const createdMessage = await chatQueries.createMessage(
       {
         senderId: req.tokenData.userId,
         body: req.body.messageBody,
         conversationId: conversation.id,
       },
-      { transaction }
+      transaction
     );
     await transaction.commit();
 
@@ -175,13 +177,7 @@ module.exports.getCatalogs = async (req, res, next) => {
   const userId = req.tokenData.userId;
   try {
     const catalogs = await chatQueries.findAllCatalogs(userId);
-    res.send(
-      catalogs.map(catalog => ({
-        _id: catalog.id,
-        catalogName: catalog.catalogName,
-        chats: catalog.CatalogChats.map(({ conversationId }) => conversationId),
-      }))
-    );
+    res.send(catalogs.map(catalog => mapper.catalogToResponse(catalog)));
   } catch (err) {
     next(err);
   }
@@ -222,18 +218,13 @@ module.exports.updateNameCatalog = async (req, res, next) => {
   const catalogName = req.body.catalogName;
   const catalogId = req.body.catalogId;
   try {
-    const updateCatalog = await chatQueries.updateNameCatalog(
+    await chatQueries.updateNameCatalog(
       userId,
       catalogId,
       catalogName
     );
     const catalogs = await chatQueries.findCatalogById(catalogId, userId, true);
-    res.send({
-      _id: updateCatalog.id,
-      user: userId,
-      catalogName: updateCatalog.catalogName,
-      chats: catalogs.CatalogChats.map(({ conversationId }) => conversationId),
-    });
+    res.send(mapper.catalogToResponse(catalogs, userId));
   } catch (err) {
     next(err);
   }
@@ -274,20 +265,12 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
     if (!findCatalog) {
       return res.send({ message: 'Catalog not found' });
     }
-    await db.CatalogChats.destroy({
-      where: {
-        catalogId: catalogsId,
-        conversationId: chatId,
-      },
-    });
-    const remainingChatsRaw = await db.CatalogChats.findAll({
-      where: { catalogId: catalogsId },
-      attributes: ['conversationId'],
-    });
+    await chatQueries.removeChatFromCatalog(catalogsId, chatId);
+    const remainingChats = await chatQueries.findCatalogChatIds(catalogsId);
     res.send({
       _id: Number(catalogsId),
       catalogName: findCatalog.catalogName,
-      chats: remainingChatsRaw.map(({ conversationId }) => conversationId),
+      chats: remainingChats.map(({ conversationId }) => conversationId),
     });
   } catch (err) {
     next(err);

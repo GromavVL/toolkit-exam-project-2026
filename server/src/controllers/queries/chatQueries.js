@@ -49,6 +49,25 @@ module.exports.getMessageChat = async (user1Id, user2Id) => {
   return getMessages;
 };
 
+module.exports.findOrCreateConversation = async (
+  user1Id,
+  user2Id,
+  transaction
+) => {
+  const [conversation] = await bd.Conversations.findOrCreate({
+    where: { user1Id, user2Id },
+    transaction,
+  });
+
+  return conversation;
+};
+
+module.exports.createMessage = async (data, transaction) => {
+  const message = await bd.Messages.create(data, { transaction });
+
+  return message;
+};
+
 module.exports.updateFavoriteFlag = async (user1Id, user2Id, field, value) => {
   const [updatedCount, [updatedFavorite]] = await bd.Conversations.update(
     { [field]: value },
@@ -157,4 +176,17 @@ module.exports.createChatInCatalog = async (catalogId, conversationId) => {
   });
 
   return chat;
+};
+
+module.exports.removeChatFromCatalog = async (catalogId, conversationId) => {
+  return bd.CatalogChats.destroy({
+    where: { catalogId, conversationId },
+  });
+};
+
+module.exports.findCatalogChatIds = async catalogId => {
+  return bd.CatalogChats.findAll({
+    where: { catalogId },
+    attributes: ['conversationId'],
+  });
 };
