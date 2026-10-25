@@ -97,6 +97,27 @@ module.exports.updateNameCatalog = async (userId, id, Name) => {
   return updatedCatalog;
 };
 
+module.exports.findCatalogById = async (
+  catalogId,
+  userId,
+  includeChats = false
+) => {
+  const include = includeChats
+    ? [
+        {
+          model: bd.CatalogChats,
+          attributes: ['conversationId'],
+          required: false,
+        },
+      ]
+    : [];
+
+  return bd.Catalogs.findOne({
+    where: { id: catalogId, userId },
+    include,
+  });
+};
+
 module.exports.findAllCatalogs = async userId => {
   const catalog = await bd.Catalogs.findAll({
     where: { userId },

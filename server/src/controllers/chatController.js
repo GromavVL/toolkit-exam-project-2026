@@ -227,16 +227,7 @@ module.exports.updateNameCatalog = async (req, res, next) => {
       catalogId,
       catalogName
     );
-    const catalogs = await db.Catalogs.findOne({
-      where: { id: catalogId },
-      include: [
-        {
-          model: db.CatalogChats,
-          attributes: ['conversationId'],
-          required: false,
-        },
-      ],
-    });
+    const catalogs = await chatQueries.findCatalogById(catalogId, userId, true);
     res.send({
       _id: updateCatalog.id,
       user: userId,
@@ -253,9 +244,7 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
   const chatId = req.body.chatId;
   const userId = req.tokenData.userId;
   try {
-    const findCatalog = await db.Catalogs.findOne({
-      where: { id: catalogsId, userId },
-    });
+    const findCatalog = await chatQueries.findCatalogById(catalogsId, userId);
     if (!findCatalog) {
       return res.send({ message: 'Catalog not found' });
     }
@@ -282,16 +271,7 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
   const chatId = req.params.chatId;
   const userId = req.tokenData.userId;
   try {
-    const findCatalog = await db.Catalogs.findOne({
-      where: { id: catalogsId, userId },
-      include: [
-        {
-          model: db.CatalogChats,
-          attributes: ['conversationId'],
-          required: false,
-        },
-      ],
-    });
+    const findCatalog = await chatQueries.findCatalogById(catalogsId, userId);
     if (!findCatalog) {
       return res.send({ message: 'Catalog not found' });
     }
