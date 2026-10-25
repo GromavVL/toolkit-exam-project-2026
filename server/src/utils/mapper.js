@@ -4,3 +4,10 @@ module.exports.chatToResponse = conversation => ({
   blackList: [conversation.blackList1, conversation.blackList2],
   favoriteList: [conversation.favoriteList1, conversation.favoriteList2],
 });
+
+module.exports.catalogToResponse = (catalog, userId) => ({
+  _id: catalog.id,
+  ...(userId !== undefined && { user: userId }),
+  catalogName: catalog.catalogName,
+  chats: catalog.CatalogChats.map(({ conversationId }) => conversationId),
+});
