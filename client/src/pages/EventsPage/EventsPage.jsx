@@ -6,8 +6,12 @@ import CONSTANTS from '../../constants';
 
 function EventsPage () {
   const [events, setEvents] = useState(() => {
-    const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
+    try {
+      const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
