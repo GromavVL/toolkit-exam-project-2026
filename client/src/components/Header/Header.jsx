@@ -21,8 +21,12 @@ const Header = props => {
     navigate,
   } = props;
   const [events, setEvents] = useState(() => {
-    const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
+    try {
+      const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
   });
   const [buttonSwitch, setButtonSwitch] = useState(false);
   useEffect(() => {
