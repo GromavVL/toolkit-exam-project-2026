@@ -340,29 +340,10 @@ module.exports.getContests = (req, res, next) => {
 };
 
 module.exports.getPendingOffers = async (req, res, next) => {
+  const limit = req.query.limit;
+  const offset = req.query.offset;
   try {
-    const offers = await db.Offers.findAll({
-      where: {
-        status: CONSTANTS.OFFER_STATUS_PENDING,
-      },
-      include: [
-        {
-          model: db.Contests,
-          attributes: [
-            'title',
-            'industry',
-            'contestType',
-            'fileName',
-            'styleName',
-            'contestType',
-          ],
-        },
-        {
-          model: db.Users,
-          attributes: ['email'],
-        },
-      ],
-    });
+    const offers = await contestQueries.findAllPendingOffers(limit, offset);
     res.send(offers);
   } catch (err) {
     next(err);
