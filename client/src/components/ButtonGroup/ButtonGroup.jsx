@@ -4,7 +4,9 @@ import CONSTANTS from './../../constants';
 import SwitchButton from './SwitchButton';
 
 const ButtonGroup = () => {
-  const defaultIndex = CONSTANTS.BUTTON_ITEMS.find(b => b.recommended);
+  const defaultIndex = CONSTANTS.BUTTON_ITEMS.find(
+    button => button.recommended
+  );
   const [activeTabIndex, setActiveTabIndex] = useState(defaultIndex.id);
 
   const handlerClick = id => {
