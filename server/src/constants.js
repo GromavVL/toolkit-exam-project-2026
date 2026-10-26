@@ -53,4 +53,5 @@ module.exports = {
     SUBJECT: 'Update on your offer submission',
     TEXT: 'Thank you for submitting your offer. After careful review, we regret to inform you that it does not meet our current guidelines and cannot be approved at this time. We encourage you to review our policy and consider submitting again in the future. Respectfully team SquadHelp',
   },
+  LIMIT: 8,
 };
