@@ -1,3 +1,17 @@
+@mixin refreshModeratorButton()
+    background: #28d2d0
+    color: white
+    padding: 5px 25px 5px 25px
+    border-radius: 5px
+    border: 1px solid #28d2d0
+    &:hover
+        background: white
+        color: #28d2d0
+
+@mixin color-font()
+    color: #455a89
+    font-weight: 700
+
 .moderatorWrapper
     min-height: 86vh
     display: flex
@@ -12,35 +26,22 @@
     border-radius: 10px
     max-width: 750px
     width: 100%
-    // min-width: 750px
     display: flex
     flex-direction: column
     gap: 10px
     position: relative
 
 .refreshButton
-    background: #28d2d0
-    color: white
-    border: none
-    padding: 5px 25px 5px 25px
-    border-radius: 8px
-    border: 1px solid #28d2d0
-
-    &:hover
-        background: white
-        color: #28d2d0
+    @include refreshModeratorButton
 
 .titleModerator
     font-size: 22px
-    color: #455a89
-    font-weight: 700
+    @include color-font
 
 .messagePreview
     text-align: center
     padding: 250px
-    color: #455a89
-    font-weight: 700
-
+    @include color-font
 
 .reviewHeader
     display: flex
@@ -51,3 +52,10 @@
     @media (max-width: 540px)
         gap: 10px
         flex-direction: column
+
+.blockButtonList
+    display: flex
+    gap: 10px
+
+.nextBtn
+    @include refreshModeratorButton

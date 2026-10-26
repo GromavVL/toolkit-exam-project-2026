@@ -221,12 +221,20 @@ export default {
       .required('Required'),
     eventTime: yup
       .date()
-      .min(new Date(), 'Event time must be in the future')
+      .test(
+        'future',
+        'Event time must be in the future',
+        value => !value || value.getTime() > Date.now()
+      )
       .required('Required'),
     remiderTime: yup
       .date()
+      .test(
+        'future',
+        'Reminder time must be in the future',
+        value => !value || value.getTime() > Date.now()
+      )
       .required('Required')
-      .min(new Date())
       .max(yup.ref('eventTime'), 'Reminder must be before event time'),
   }),
 };

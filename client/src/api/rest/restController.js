@@ -59,5 +59,11 @@ export const getActiveContests = ({
 export const getContestById = ({ contestId }) =>
   http.get(`getContestById/${contestId}`);
 
-export const getPendingOffers = () => http.get('getAllPendingOffers');
+export const getPendingOffers = data =>
+  http.get('getAllPendingOffers', {
+    params: {
+      limit: data.limit,
+      offset: data.offset,
+    },
+  });
 export const setReviewOfferStatus = data => http.patch('setReviewOffers', data);

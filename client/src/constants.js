@@ -49,6 +49,7 @@ export default {
     'a Product',
     'a Startup',
   ],
+  LIMIT: 8,
   FOOTER_ITEMS: [
     {
       title: 'SQUADHELP',
@@ -280,17 +281,21 @@ export default {
   ],
   BUTTON_ITEMS: [
     {
+      id: 1,
       title: 'Yes',
       body: 'But minor variations are allowed',
       recommended: true,
     },
     {
+      id: 2,
       title: 'Yes',
       body: 'The Domain should exactly match the name',
     },
     {
+      id: 3,
       title: 'No',
       body: 'I am only looking for a name, not a Domain',
     },
   ],
+
 };

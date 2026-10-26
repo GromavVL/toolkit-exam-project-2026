@@ -7,10 +7,15 @@ $weight-h: 700
     padding: 25px
     width: 380px
     max-width: 100%
-    flex: 1 1 1
     background: #fff
     box-sizing: border-box
     box-shadow: 0 16px 32px rgb(0 0 0 / .04)
+
+    @media (max-width: 630px)
+        align-items: center
+        width: 100%
+        margin: 0 1rem 0 1rem
+        text-align: center
 
 .cardImages
     width: 48px
@@ -23,7 +28,9 @@ $weight-h: 700
 .cardBody
     color: #828282
     line-height: 1.5
-    margin-bottom: 75px
+    margin-bottom: 65px
+    @media (max-width: 630px)
+        font-size: 0.9rem
 
 .cardLink
     display: flex
@@ -32,7 +39,7 @@ $weight-h: 700
     text-decoration: none
     background: linear-gradient(-45deg, #5a73ed 0, #3d57d5 100%)
     color: #ffff
-    padding: 12px
+    padding: 16px
     border-radius: 8px
     margin-top: auto
     gap: 6px

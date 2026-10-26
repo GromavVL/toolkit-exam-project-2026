@@ -126,8 +126,8 @@ const changeMarkExtraReducers = createExtraReducers({
 
 export const getPendingOffers = decorateAsyncThunk({
   key: `${CONTEST_BY_ID_SLICE_NAME}/getPendingOffers`,
-  thunk: async () => {
-    const { data } = await restController.getPendingOffers();
+  thunk: async payload => {
+    const { data } = await restController.getPendingOffers(payload);
     return data;
   },
 });
@@ -136,7 +136,6 @@ const getPendingOffersExtraReducers = createExtraReducers({
   thunk: getPendingOffers,
   pendingReducer: state => {
     state.isFetching = true;
-    state.contestData = null;
     state.error = null;
     state.offers = [];
   },
@@ -146,7 +145,9 @@ const getPendingOffersExtraReducers = createExtraReducers({
     state.offers = payload;
   },
   rejectedReducer: (state, { payload }) => {
+    state.isFetching = false;
     state.error = payload;
+    state.offers = [];
   },
 });
 
@@ -175,6 +176,7 @@ const setReviewOfferExtraReducers = createExtraReducers({
 });
 
 const reducers = {
+  clearContestByIdStore: () => initialState,
   updateStoreAfterUpdateContest: (state, { payload }) => {
     state.error = null;
     state.isEditContest = false;
@@ -228,6 +230,7 @@ export const {
   clearSetOfferStatusError,
   clearChangeMarkError,
   changeShowImage,
+  clearContestByIdStore,
 } = actions;
 
 export default reducer;

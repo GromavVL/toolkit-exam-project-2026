@@ -49,6 +49,25 @@ module.exports.getMessageChat = async (user1Id, user2Id) => {
   return getMessages;
 };
 
+module.exports.findOrCreateConversation = async (
+  user1Id,
+  user2Id,
+  transaction
+) => {
+  const [conversation] = await bd.Conversations.findOrCreate({
+    where: { user1Id, user2Id },
+    transaction,
+  });
+
+  return conversation;
+};
+
+module.exports.createMessage = async (data, transaction) => {
+  const message = await bd.Messages.create(data, { transaction });
+
+  return message;
+};
+
 module.exports.updateFavoriteFlag = async (user1Id, user2Id, field, value) => {
   const [updatedCount, [updatedFavorite]] = await bd.Conversations.update(
     { [field]: value },
@@ -95,4 +114,79 @@ module.exports.updateNameCatalog = async (userId, id, Name) => {
     }
   );
   return updatedCatalog;
+};
+
+module.exports.findCatalogById = async (
+  catalogId,
+  userId,
+  includeChats = false
+) => {
+  const include = includeChats
+    ? [
+        {
+          model: bd.CatalogChats,
+          attributes: ['conversationId'],
+          required: false,
+        },
+      ]
+    : [];
+
+  return bd.Catalogs.findOne({
+    where: { id: catalogId, userId },
+    include,
+  });
+};
+
+module.exports.findAllCatalogs = async userId => {
+  const catalog = await bd.Catalogs.findAll({
+    where: { userId },
+    attributes: ['id', 'catalogName'],
+    include: [
+      {
+        model: bd.CatalogChats,
+        attributes: ['conversationId'],
+        required: false,
+      },
+    ],
+    order: [['id', 'ASC']],
+  });
+
+  return catalog;
+};
+
+module.exports.destroyCatalog = async (catalogId, user) => {
+  return await bd.Catalogs.destroy({
+    where: {
+      id: catalogId,
+      userId: user,
+    },
+  });
+};
+
+module.exports.findChatInCatalog = async (catalogId, conversationId) => {
+  return bd.CatalogChats.findOne({
+    where: { catalogId, conversationId },
+  });
+};
+
+module.exports.createChatInCatalog = async (catalogId, conversationId) => {
+  const chat = await bd.CatalogChats.create({
+    catalogId,
+    conversationId,
+  });
+
+  return chat;
+};
+
+module.exports.removeChatFromCatalog = async (catalogId, conversationId) => {
+  return bd.CatalogChats.destroy({
+    where: { catalogId, conversationId },
+  });
+};
+
+module.exports.findCatalogChatIds = async catalogId => {
+  return bd.CatalogChats.findAll({
+    where: { catalogId },
+    attributes: ['conversationId'],
+  });
 };

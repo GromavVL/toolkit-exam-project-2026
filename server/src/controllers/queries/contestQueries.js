@@ -65,31 +65,53 @@ module.exports.createOffer = async data => {
 };
 
 module.exports.updateReviewStatus = async (idOffer, reviewStatus, receiver) => {
-  if (reviewStatus === CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED) {
-    const [, result] = await bd.Offers.update(
-      { status: reviewStatus },
-      {
-        where: {
-          id: idOffer,
-        },
-        returning: true,
-      }
-    );
-    sendMessage(receiver, CONSTANTS.APPROVED.SUBJECT, CONSTANTS.APPROVED.TEXT);
-    return result;
-  } else if (reviewStatus === CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL) {
-    const [, result] = await bd.Offers.update(
-      { status: reviewStatus },
-      {
-        where: {
-          id: idOffer,
-        },
-        returning: true,
-      }
-    );
-    sendMessage(receiver, CONSTANTS.CANCEL.SUBJECT, CONSTANTS.CANCEL.TEXT);
-    return result;
-  } else {
+  const notificationByStatus = {
+    [CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED]: CONSTANTS.APPROVED,
+    [CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL]: CONSTANTS.CANCEL,
+  };
+  const notification = notificationByStatus[reviewStatus];
+
+  if (!notification) {
     return new ServerError();
   }
+
+  const [, result] = await bd.Offers.update(
+    { status: reviewStatus },
+    {
+      where: { id: idOffer },
+      returning: true,
+    }
+  );
+
+  sendMessage(receiver, notification.SUBJECT, notification.TEXT);
+  return result;
+};
+
+module.exports.findAllPendingOffers = async (limit, offset) => {
+  const getOffers = await bd.Offers.findAll({
+    where: {
+      status: CONSTANTS.OFFER_STATUS_PENDING,
+    },
+    limit,
+    offset,
+    include: [
+      {
+        model: bd.Contests,
+        attributes: [
+          'title',
+          'industry',
+          'contestType',
+          'fileName',
+          'styleName',
+          'contestType',
+        ],
+      },
+      {
+        model: bd.Users,
+        attributes: ['email'],
+      },
+    ],
+  });
+
+  return getOffers;
 };

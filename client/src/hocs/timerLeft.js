@@ -4,6 +4,8 @@ const useCountdown = (targetDate, createdAt) => {
   const [timeLeft, setTimeLeft] = useState({});
 
   useEffect(() => {
+    let intervalId;
+
     const tick = () => {
       const now = Date.now();
       const end = new Date(targetDate).getTime();
@@ -12,6 +14,7 @@ const useCountdown = (targetDate, createdAt) => {
 
       if (distance <= 0) {
         setTimeLeft({ expired: true });
+        clearInterval(intervalId);
         return;
       }
 
@@ -35,7 +38,7 @@ const useCountdown = (targetDate, createdAt) => {
     };
 
     tick();
-    const intervalId = setInterval(tick, 1000);
+    intervalId = setInterval(tick, 1000);
 
     return () => clearInterval(intervalId);
   }, [targetDate, createdAt]);

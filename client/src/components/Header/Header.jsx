@@ -4,15 +4,29 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.sass';
 import CONSTANTS from '../../constants';
 import { clearUserStore } from '../../store/slices/userSlice';
+import { clearContestByIdStore } from '../../store/slices/contestByIdSlice';
+import { clearChatStore } from '../../store/slices/chatSlice.js';
 import { getUser } from '../../store/slices/userSlice';
 import withRouter from '../../hocs/withRouter';
 import MessageBadge from '../../components/MessageBadge/MessageBadge';
 
 const Header = props => {
-  const { data, isFetching, getUser, clearUserStore, navigate } = props;
+  const {
+    data,
+    isFetching,
+    getUser,
+    clearUserStore,
+    clearContestByIdStore,
+    clearChatStore,
+    navigate,
+  } = props;
   const [events, setEvents] = useState(() => {
-    const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
+    try {
+      const stored = window.localStorage.getItem(CONSTANTS.STORAGE_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
   });
   const [buttonSwitch, setButtonSwitch] = useState(false);
   useEffect(() => {
@@ -24,6 +38,8 @@ const Header = props => {
   const logOut = () => {
     localStorage.clear();
     clearUserStore();
+    clearContestByIdStore();
+    clearChatStore();
     navigate('/login', { replace: true });
   };
 
@@ -315,6 +331,8 @@ const mapStateToProps = state => state.userStore;
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(getUser()),
   clearUserStore: () => dispatch(clearUserStore()),
+  clearContestByIdStore: () => dispatch(clearContestByIdStore()),
+  clearChatStore: () => dispatch(clearChatStore()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

@@ -37,7 +37,6 @@ module.exports = {
   LOG_FILE: path.resolve(SERVER_ROOT, 'src/logger/log.ndjson'),
   LOGS_DIR: path.resolve(SERVER_ROOT, 'src/logger/logs'),
   LOG_ENCODING: 'utf8',
-  LOG_ARCHIVE_SUFFIX: '-backup.ndjson',
   TIMEZONE: 'Europe/Kyiv',
   USER_PREVIEW_ATTRIBUTES: [
     'id',

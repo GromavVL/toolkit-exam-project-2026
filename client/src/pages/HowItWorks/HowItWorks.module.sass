@@ -1,18 +1,33 @@
-$color-h: #19184A
 $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, rgba(20, 187, 191, .05) 100%), #FFFFFF
+
+=flex-config($direction: null, $justify: center, $align: center, $gap: null, $wrap: null)
+    display: flex
+    flex-direction: $direction
+    justify-content: $justify
+    align-items: $align
+    flex-wrap: $wrap
+    gap: $gap
+
+=type-set($color, $font-size, $font-weight)
+    color: $color
+    font-size: $font-size
+    font-weight: $font-weight
+
 %heading-h2
-    font-size: 28px
-    font-weight: 700
-    color: #19184A
+    +type-set($color: #19184A, $font-size: 28px, $font-weight: 700)
+
+=position-config($position, $left: null, $top: null, $right: null, $bottom: null )
+    position: $position
+    left: $left
+    top: $top
+    right: $right
+    bottom: $bottom
 
 .pageContent
     font-family: "Product Sans", sans-serif
 
 .hero
-    display: flex
-    align-items: center
-    justify-content: center
-    gap: 18px
+    +flex-config($justify: center, $gap: 18px)
     padding: 45px
     @media (max-width: 1030px)
         flex-direction: column-reverse
@@ -22,30 +37,25 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
         text-align: center
 
 .badge
-    color: #377dff
     background-color: #377dff1a
     padding: 10px 15px
     border-radius: 20px
-    font-size: 12px
     margin: 8px
-    font-weight: 500
+    +type-set($color: #377dff, $font-size: 12px, $font-weight: 500)
 
 .heading
     padding: 10px
-    color: $color-h
-    font-size: 40px
-    font-weight: 700
     margin-top: 10px
+    +type-set($color: #19184A, $font-size: 40px, $font-weight: 700)
     @media (max-width: 1030px)
         font-size: 24px
 
 .description
     min-width: 258px
     width: 490px
-    color: #19184a80
     padding: 10px    
-    font-weight: 500
     line-height: 1.5
+    +type-set($color: #19184a80, $font-size: null, $font-weight: 500)
     @media (max-width: 1030px)
         max-width: 700px
         width: 100%
@@ -85,15 +95,11 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     @extend %heading-h2
 
 .cardDescription
-    color: $color-h
+    color: #19184A
     padding: 10px
 
 .cardContainer
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    gap: 23px
-    align-items: stretch
+    +flex-config($wrap: wrap, $align: stretch, $gap: 23px)
     margin-top: 35px
 
 .icons
@@ -106,11 +112,9 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     padding: 75px 0
 
 .cardStepList
-    display: flex
     text-align: left
-    flex-wrap: wrap
-    justify-content: center
-    gap: 23px
+    +flex-config($wrap: wrap, $gap: 23px, $align: stretch)
+    margin: 0 1.7rem 0 1.7rem
 
 .cardStepIcon
     width: 70px
@@ -121,13 +125,9 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     margin-bottom: 45px
 
 .searchBlock
-    display: flex
-    align-items: center
-    justify-content: center
-    flex-direction: column
+    +flex-config($direction: column, $gap: 28px)
     padding: 75px
     position: relative
-    gap: 28px
     @media (max-width: 640px)
         padding: 40px 20px
 
@@ -142,9 +142,7 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
         width: 100%
 
 .searchBlockIcon
-    position: absolute
-    left: 24px
-    top: 50%
+    +position-config($position: absolute, $left: 24px, $top: 50%)
     transform: translateY(-50%)
     font-size: 20px
 
@@ -156,15 +154,11 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     box-sizing: border-box
 
 .searchButton
-    display: flex
-    align-items: center
-    justify-content: center
+    +flex-config()
     background-color: #ff6955
     border: none
     border-radius: 50%
-    position: absolute
-    right: 6px
-    top: 50%
+    +position-config($position: absolute, $right: 6px, $top: 50%)
     transform: translateY(-50%)
     padding: 16px
 
@@ -173,10 +167,7 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     font-size: 20px
 
 .searchTagsList
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    gap: 12px
+    +flex-config($wrap: wrap, $gap: 12px)
     @media (max-width: 640px)
         gap: 8px
 
@@ -184,10 +175,9 @@ $bg-color-card-section: linear-gradient(271.19deg, rgba(48, 125, 246, .05) 0%, r
     padding: 10px 20px
     border-radius: 30px
     background: #eef0fb
-    color: #2b2aaa
-    font-size: 14px
     text-decoration: none
     white-space: nowrap
+    +type-set($color: #2b2aaa, $font-size: 14px, $font-weight: null)
     @media (max-width: 640px)
         padding: 8px 14px
         font-size: 14px

@@ -1,5 +1,6 @@
 import styles from './OfferBoxReview.module.sass';
 import CONSTANTS from '../../../constants';
+import { confirmAlert } from 'react-confirm-alert';
 
 const MetaRow = ({ title, value }) => (
   <div className={styles.metaRow}>
@@ -10,24 +11,27 @@ const MetaRow = ({ title, value }) => (
 
 const OfferBoxReview = props => {
   const { offers, setReviewOfferStatus } = props;
-
-  const approvedOffer = id => {
+  
+  const setStatusOffer = (id, status) => {
     const offer = offers.find(offer => offer.id === id);
     const data = {
       id: id,
-      status: CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED,
+      status: status,
       email: offer.User.email,
     };
-    setReviewOfferStatus(data);
-  };
-  const cancelOffer = id => {
-    const offer = offers.find(offer => offer.id === id);
-    const data = {
-      id: id,
-      status: CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL,
-      email: offer.User.email,
-    };
-    setReviewOfferStatus(data);
+    confirmAlert({
+      title: status,
+      message: 'Are u sure?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => setReviewOfferStatus(data),
+        },
+        {
+          label: 'No',
+        },
+      ],
+    });
   };
   return (
     <>
@@ -61,13 +65,17 @@ const OfferBoxReview = props => {
           <div className={styles.blockButton}>
             <button
               className={styles.approvedBtn}
-              onClick={() => approvedOffer(o.id)}
+              onClick={() =>
+                setStatusOffer(o.id, CONSTANTS.OFFER_STATUS_MODERATOR_APPROVED)
+              }
             >
               Approved
             </button>
             <button
               className={styles.cancelBtn}
-              onClick={() => cancelOffer(o.id)}
+              onClick={() =>
+                setStatusOffer(o.id, CONSTANTS.OFFER_STATUS_MODERATOR_CANCEL)
+              }
             >
               Cancel
             </button>

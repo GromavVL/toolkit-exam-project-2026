@@ -1,8 +1,10 @@
-import styles from './Questions.module.sass';
+import styles from './QuestionsContainer.module.sass';
 import CONSTANTS from './../../../constants';
+import QuestionItem from '../QuestionItem/QuestionItem';
 
-function Questions () {
+function QuestionsContainer () {
   const slugify = title => title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
   return (
     <>
       <nav className={styles.nav}>
@@ -25,12 +27,7 @@ function Questions () {
           <h3 className={styles.titleQuestion}>{q.title}</h3>
           <div className={styles.questionList}>
             {q.body.map(r => (
-              <details key={r.question} className={styles.questionItem}>
-                <summary className={styles.questionSummary}>
-                  {r.question} <span className={styles.icons}>+</span>
-                </summary>
-                <p className={styles.questionAnswer}>{r.answer}</p>
-              </details>
+              <QuestionItem item={r} key={r.question} />
             ))}
           </div>
         </article>
@@ -39,4 +36,4 @@ function Questions () {
   );
 }
 
-export default Questions;
+export default QuestionsContainer;

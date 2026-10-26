@@ -22,6 +22,7 @@ class CustomerDashboard extends React.Component {
   };
 
   componentDidMount () {
+    this.props.clearContestsList()
     this.getContests();
   }
 

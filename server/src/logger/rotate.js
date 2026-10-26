@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 const CONSTANT = require('../constants');
 
 const buildFileName = () => {
@@ -6,9 +6,10 @@ const buildFileName = () => {
     .toLocaleString('sv-SE', {
       timeZone: CONSTANT.TIMEZONE,
     })
-    .slice(0, 10);
+    .slice(0, 16)
+    .replaceAll(' ', '-');
 
-  return `${timestamp}${CONSTANT.LOG_ARCHIVE_SUFFIX}`;
+  return `${timestamp}.ndjson`;
 };
 
 const transformLine = line => {
@@ -27,26 +28,33 @@ const transformContent = content => {
   return transformed.map(line => `${line}\n`).join('');
 };
 
-const rotateLog = () => {
-  if (!fs.existsSync(CONSTANT.LOG_FILE)) {
+const rotateLog = async () => {
+  try {
+    let fileRead;
+    try {
+      fileRead = await fs.readFile(CONSTANT.LOG_FILE, CONSTANT.LOG_ENCODING);
+    } catch (err) {
+      return null;
+    }
+
+    if (!fileRead.trim()) {
+      return null;
+    }
+
+    await fs.mkdir(CONSTANT.LOGS_DIR, { recursive: true });
+
+    const archivePath = `${CONSTANT.LOGS_DIR}/${buildFileName()}`;
+    await fs.writeFile(
+      archivePath,
+      transformContent(fileRead),
+      CONSTANT.LOG_ENCODING
+    );
+    await fs.truncate(CONSTANT.LOG_FILE, 0);
+
+    return archivePath;
+  } catch (err) {
     return null;
   }
-  fs.mkdirSync(CONSTANT.LOGS_DIR, { recursive: true });
-
-  const fileRead = fs.readFileSync(CONSTANT.LOG_FILE, CONSTANT.LOG_ENCODING);
-
-  if (!fileRead.trim()) {
-    return null;
-  }
-  const archivePath = `${CONSTANT.LOGS_DIR}/${buildFileName()}`;
-  fs.writeFileSync(
-    archivePath,
-    transformContent(fileRead),
-    CONSTANT.LOG_ENCODING
-  );
-  fs.truncateSync(CONSTANT.LOG_FILE, 0);
-
-  return archivePath;
 };
 
 module.exports = rotateLog;

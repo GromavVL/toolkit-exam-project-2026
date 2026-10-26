@@ -3,6 +3,7 @@ const CONSTANTS = require('../constants');
 const bd = require('../models');
 const NotUniqueEmail = require('../errors/NotUniqueEmail');
 const NotEnoughMoney = require('../errors/NotEnoughMoney');
+const CheckCardDetails = require('../errors/CheckCardDetails');
 const moment = require('moment');
 const { v4: uuid } = require('uuid');
 const controller = require('../socketInit');
@@ -167,7 +168,7 @@ module.exports.payment = async (req, res, next) => {
     res.send();
   } catch (err) {
     transaction.rollback();
-    next(err);
+    next(new CheckCardDetails());
   }
 };
 

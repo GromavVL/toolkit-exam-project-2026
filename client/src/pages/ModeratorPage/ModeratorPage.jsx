@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styles from './ModeratorPage.module.sass';
 import {
@@ -10,14 +10,18 @@ import CONSTANTS from '../../constants';
 import OfferBoxReview from '../../components/OfferBox/OfferBoxReview/OfferBoxReview';
 
 const ModeratorPage = props => {
+  const [offset, setOffset] = useState(0);
   const {
     contestByIdStore: { offers },
     getPendingOffers,
     setReviewOfferStatus,
   } = props;
   useEffect(() => {
-    getPendingOffers();
-  }, []);
+    getPendingOffers({ limit: CONSTANTS.LIMIT, offset: offset });
+  }, [offset]);
+  const handlePrev = () =>
+    setOffset(prev => Math.max(prev - CONSTANTS.LIMIT, 0));
+  const handleNext = () => setOffset(prev => prev + CONSTANTS.LIMIT);
 
   return (
     <main className={styles.moderatorWrapper}>
@@ -26,8 +30,18 @@ const ModeratorPage = props => {
           <h2 className={styles.titleModerator}>
             Offers to review: {offers.length}
           </h2>
+          <div className={styles.blockButtonList}>
+            <button className={styles.nextBtn} onClick={handlePrev}>
+              {'<'}
+            </button>
+            <button className={styles.nextBtn} onClick={handleNext}>
+              {'>'}
+            </button>
+          </div>
           <button
-            onClick={() => props.getPendingOffers()}
+            onClick={() =>
+              props.getPendingOffers({ limit: CONSTANTS.LIMIT, offset: offset })
+            }
             className={styles.refreshButton}
           >
             Refresh
@@ -60,7 +74,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getPendingOffers: () => dispatch(getPendingOffers()),
+  getPendingOffers: data => dispatch(getPendingOffers(data)),
   setReviewOfferStatus: data => dispatch(setReviewOfferStatus(data)),
 });
 
